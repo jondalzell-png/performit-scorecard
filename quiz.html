@@ -53,37 +53,60 @@ body.results-active{overflow:auto;height:auto}
   background:rgba(10,10,10,0.97);
   backdrop-filter:blur(16px);
   border-bottom:1px solid var(--border);
-  padding:14px 40px;
+  padding:12px 40px;
   display:none;
   position:sticky;
   top:122px;
   z-index:90;
 }
 .prog-header{
-  max-width:800px;
+  max-width:780px;
   margin:0 auto;
 }
 .prog-meta{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  margin-bottom:10px;
+  gap:16px;
+  margin-bottom:8px;
 }
+.prog-back{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:none;
+  border:none;
+  color:rgba(255,255,255,.45);
+  font-family:inherit;
+  font-size:13px;
+  font-weight:600;
+  cursor:pointer;
+  padding:0;
+  flex-shrink:0;
+  transition:color .2s;
+  letter-spacing:.01em;
+}
+.prog-back:hover{color:var(--orange)}
+.prog-back svg{transition:transform .2s}
+.prog-back:hover svg{transform:translateX(-3px)}
 .prog-cat{
   color:var(--orange);
   font-weight:800;
-  font-size:13px;
-  letter-spacing:.06em;
+  font-size:12px;
+  letter-spacing:.08em;
   text-transform:uppercase;
+  flex:1;
+  text-align:center;
 }
 .prog-count{
-  color:rgba(255,255,255,0.8);
-  font-size:13px;
+  color:rgba(255,255,255,0.45);
+  font-size:12px;
   font-weight:600;
+  flex-shrink:0;
 }
 .prog-bar{
-  height:5px;
-  background:rgba(255,255,255,0.08);
+  height:4px;
+  background:rgba(255,255,255,0.07);
   border-radius:3px;
   overflow:hidden;
 }
@@ -93,7 +116,7 @@ body.results-active{overflow:auto;height:auto}
   border-radius:3px;
   transition:width .5s cubic-bezier(.4,0,.2,1);
   width:0%;
-  box-shadow:0 0 10px rgba(245,166,35,.5);
+  box-shadow:0 0 8px rgba(245,166,35,.4);
 }
 
 /* ─── SECTIONS ─── */
@@ -102,7 +125,7 @@ body.results-active{overflow:auto;height:auto}
 #secResults.active{display:block}
 /* Non-results sections fill exactly the viewport below the nav */
 #secQual.active,#secLead.active{height:calc(100vh - 122px);overflow:hidden}
-#secQuiz.active{height:calc(100vh - 122px - 65px);overflow:hidden}
+#secQuiz.active{height:calc(100vh - 122px - 58px);overflow:hidden}
 
 /* ─── QUALIFYING ─── */
 .qual-outer{
@@ -282,44 +305,14 @@ body.results-active{overflow:auto;height:auto}
   line-height:1.5;
 }
 
-/* ─── BACK BUTTON ─── */
-.back-btn{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  background:rgba(245,166,35,.08);
-  border:1px solid rgba(245,166,35,.3);
-  color:var(--orange);
-  font-family:inherit;
-  font-size:14px;
-  font-weight:700;
-  cursor:pointer;
-  padding:9px 18px;
-  border-radius:100px;
-  transition:all .2s;
-  letter-spacing:.02em;
-}
-.back-btn:hover{background:rgba(245,166,35,.15);color:#fff;border-color:rgba(245,166,35,.6)}
-.back-btn svg{transition:transform .2s}
-.back-btn:hover svg{transform:translateX(-3px)}
 
 /* ─── QUIZ ─── */
 .quiz-outer{
   flex:1;
   display:flex;
-  flex-direction:column;
-  overflow:hidden;
-}
-.quiz-top-bar{
-  padding:16px 40px;
-  flex-shrink:0;
-}
-.quiz-center{
-  flex:1;
-  display:flex;
   align-items:center;
   justify-content:center;
-  padding:0 24px 24px;
+  padding:32px 40px;
   overflow-y:auto;
 }
 .quiz-inner{
@@ -349,13 +342,13 @@ body.results-active{overflow:auto;height:auto}
   align-items:center;
   gap:16px;
   background:#1c1c1c;
-  border:1px solid rgba(245,166,35,.15);
-  border-radius:14px;
-  padding:20px 24px;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:12px;
+  padding:18px 24px;
   text-align:left;
   color:rgba(255,255,255,.85);
   font-family:inherit;
-  font-size:17px;
+  font-size:16px;
   font-weight:500;
   line-height:1.45;
   cursor:pointer;
@@ -760,6 +753,10 @@ footer p{font-size:12px;color:rgba(0,0,0,.55);font-weight:500}
 <div class="prog-wrap" id="progWrap">
   <div class="prog-header">
     <div class="prog-meta">
+      <button class="prog-back" id="backBtn" onclick="goBack()">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back
+      </button>
       <span class="prog-cat" id="progCat"></span>
       <span class="prog-count" id="progCount"></span>
     </div>
@@ -825,18 +822,10 @@ footer p{font-size:12px;color:rgba(0,0,0,.55);font-weight:500}
 <!-- ── QUIZ ── -->
 <div class="sec" id="secQuiz">
   <div class="quiz-outer">
-    <div class="quiz-top-bar">
-      <button class="back-btn" id="backBtn" onclick="goBack()">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        Back
-      </button>
-    </div>
-    <div class="quiz-center">
-      <div class="quiz-inner">
-        <div class="q-card" id="qCard">
-          <p class="q-text" id="qText"></p>
-          <div class="a-grid" id="aGrid"></div>
-        </div>
+    <div class="quiz-inner">
+      <div class="q-card" id="qCard">
+        <p class="q-text" id="qText"></p>
+        <div class="a-grid" id="aGrid"></div>
       </div>
     </div>
   </div>
