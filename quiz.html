@@ -8,15 +8,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
 html{scroll-behavior:smooth}
 body{
   font-family:'Inter',sans-serif;
   background:#0a0a0a;
   color:#fff;
-  min-height:100vh;
+  height:100%;
+  overflow:hidden;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
 }
+body.results-active{overflow:auto;height:auto}
 :root{
   --orange:#f5a623;
   --orange-dark:#d4891a;
@@ -94,15 +97,21 @@ body{
 }
 
 /* ─── SECTIONS ─── */
-.sec{display:none}.sec.active{display:block}
+.sec{display:none}
+.sec.active{display:flex;flex-direction:column}
+#secResults.active{display:block}
+/* Non-results sections fill exactly the viewport below the nav */
+#secQual.active,#secLead.active{height:calc(100vh - 122px);overflow:hidden}
+#secQuiz.active{height:calc(100vh - 122px - 65px);overflow:hidden}
 
 /* ─── QUALIFYING ─── */
 .qual-outer{
-  min-height:calc(100vh - 89px);
+  flex:1;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:60px 24px;
+  padding:40px 24px;
+  overflow:hidden;
 }
 .qual-inner{
   max-width:680px;
@@ -131,10 +140,10 @@ body{
 }
 .qual-h span{color:var(--orange)}
 .qual-sub{
-  font-size:20px;
+  font-size:18px;
   color:rgba(255,255,255,0.75);
-  line-height:1.65;
-  margin-bottom:52px;
+  line-height:1.6;
+  margin-bottom:36px;
   max-width:520px;
   margin-left:auto;
   margin-right:auto;
@@ -204,11 +213,12 @@ body{
 
 /* ─── LEAD CAPTURE ─── */
 .lead-outer{
-  min-height:calc(100vh - 122px);
+  flex:1;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:60px 24px;
+  padding:40px 24px;
+  overflow:hidden;
 }
 .lead-inner{
   max-width:600px;
@@ -296,11 +306,12 @@ body{
 
 /* ─── QUIZ ─── */
 .quiz-outer{
-  min-height:calc(100vh - 160px);
+  flex:1;
   display:flex;
-  align-items:flex-start;
+  align-items:center;
   justify-content:center;
-  padding:clamp(32px,5vh,64px) 24px 60px;
+  padding:32px 24px;
+  overflow-y:auto;
 }
 .quiz-inner{
   max-width:780px;
@@ -1031,6 +1042,7 @@ function goBack(){
 }
 
 function showResults(name='',email=''){
+  document.body.classList.add('results-active');
   show('secResults');
   const total=scores.reduce((a,b)=>a+b,0);
   const pct=Math.round(total/2000*100);
