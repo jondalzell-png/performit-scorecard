@@ -202,63 +202,6 @@ body{
 }
 .btn-begin:hover{background:#ffb733;transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,166,35,.3)}
 
-/* ─── CATEGORY INTRO ─── */
-.cat-intro-outer{
-  min-height:calc(100vh - 122px);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:60px 24px;
-}
-.cat-intro-inner{
-  max-width:620px;
-  width:100%;
-  text-align:center;
-}
-.cat-num-badge{
-  width:72px;
-  height:72px;
-  border-radius:50%;
-  background:var(--orange);
-  color:#000;
-  font-size:28px;
-  font-weight:900;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin:0 auto 28px;
-  box-shadow:0 8px 32px rgba(245,166,35,.35);
-}
-.cat-intro-name{
-  font-size:clamp(28px,5vw,44px);
-  font-weight:800;
-  line-height:1.15;
-  margin-bottom:14px;
-  letter-spacing:-.02em;
-}
-.cat-intro-desc{
-  font-size:17px;
-  color:var(--muted);
-  line-height:1.65;
-  margin-bottom:40px;
-  max-width:480px;
-  margin-left:auto;
-  margin-right:auto;
-}
-.btn-start-cat{
-  display:inline-block;
-  padding:16px 40px;
-  background:var(--orange);
-  color:#000;
-  font-family:inherit;
-  font-size:16px;
-  font-weight:700;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-  transition:all .2s;
-}
-.btn-start-cat:hover{background:#ffb733;transform:translateY(-2px)}
 
 /* ─── BACK BUTTON ─── */
 .back-btn{
@@ -741,17 +684,6 @@ footer p{font-size:12px;color:rgba(0,0,0,.55);font-weight:500}
   </div>
 </div>
 
-<!-- ── CATEGORY INTRO ── -->
-<div class="sec" id="secCatIntro">
-  <div class="cat-intro-outer">
-    <div class="cat-intro-inner">
-      <div class="cat-num-badge" id="catNumBadge">1</div>
-      <h1 class="cat-intro-name" id="catIntroName"></h1>
-      <p class="cat-intro-desc" id="catIntroDesc"></p>
-      <button class="btn-start-cat" onclick="startCategory()">Start This Section →</button>
-    </div>
-  </div>
-</div>
 
 <!-- ── QUIZ ── -->
 <div class="sec" id="secQuiz">
@@ -923,21 +855,10 @@ function startQuiz(){
   if(!rol){document.getElementById('role').classList.add('error');document.getElementById('errRole').classList.add('visible');valid=false;}
   if(!valid){document.getElementById('errIndustry').scrollIntoView({behavior:'smooth',block:'center'});return;}
   document.getElementById('progWrap').style.display='block';
-  showCatIntro(0);
-}
-
-function showCatIntro(catIdx){
-  const cat=CATS[catIdx];
-  document.getElementById('catNumBadge').textContent=catIdx+1;
-  document.getElementById('catIntroName').textContent=cat.name;
-  document.getElementById('catIntroDesc').textContent=cat.desc;
-  show('secCatIntro');
-}
-
-function startCategory(){
   show('secQuiz');
   renderQ();
 }
+
 
 function renderQ(){
   const q=QS[qi];
@@ -966,12 +887,7 @@ function pick(score,ci,btn,q){
   setTimeout(()=>{
     qi++;
     if(qi>=QS.length){showResults();return;}
-    const nextCat=QS[qi].c;
-    if(nextCat!==q.c){
-      showCatIntro(nextCat);
-    } else {
-      renderQ();
-    }
+    renderQ();
   },380);
 }
 
