@@ -1161,12 +1161,17 @@ function renderQ(){
   });
 }
 
+let picking=false;
 function pick(score,ci,btn,q){
-  document.querySelectorAll('.a-btn').forEach(b=>b.classList.remove('selected'));
+  if(picking)return;
+  picking=true;
+  document.querySelectorAll('.a-btn').forEach(b=>{b.classList.remove('selected');b.style.pointerEvents='none';});
   btn.classList.add('selected');
   scores[ci]+=score;
   answerHistory.push({qi, catIdx:ci, score});
   setTimeout(()=>{
+    picking=false;
+    document.querySelectorAll('.a-btn').forEach(b=>b.style.pointerEvents='');
     qi++;
     if(qi>=QS.length){
       document.getElementById('progWrap').style.display='none';
@@ -1197,7 +1202,7 @@ function showResults(name='',email=''){
   document.body.classList.add('results-active');
   show('secResults');
   const total=scores.reduce((a,b)=>a+b,0);
-  const pct=Math.round(total/2000*100);
+  const pct=Math.min(100,Math.round(total/2000*100));
   const tier=TIERS.find(t=>pct>=t.min&&pct<=t.max)||TIERS[0];
   const badge=document.getElementById('tierBadge');
   badge.textContent=tier.label;badge.className='score-tier-badge '+tier.cls;
@@ -1226,7 +1231,7 @@ function showResults(name='',email=''){
   const grid=document.getElementById('catsGrid');grid.innerHTML='';
   const ids=['ev','eb','oa','ro'];
   CATS.forEach((cat,i)=>{
-    const p=Math.round(scores[i]/cat.max*100);
+    const p=Math.min(100,Math.round(scores[i]/cat.max*100));
     const ti=p<40?0:p<75?1:2;
     const tl=p<40?'Not Ready':p<75?'Emerging Readiness':'Operating at Scale';
     const col=scoreCol(p);
@@ -1247,7 +1252,7 @@ function showResults(name='',email=''){
 
   // Biggest gap
   let li=0,lp=101;
-  CATS.forEach((c,i)=>{const p=Math.round(scores[i]/c.max*100);if(p<lp){lp=p;li=i;}});
+  CATS.forEach((c,i)=>{const p=Math.min(100,Math.round(scores[i]/c.max*100));if(p<lp){lp=p;li=i;}});
   const gid=ids[li],g=GAP[gid];
   const gc=scoreCol(lp);
   const gBg=scoreColAlpha(lp,.15);
@@ -1291,7 +1296,7 @@ function buildReportHTML(){
   const tglow=scoreColAlpha(pct,.08);
   const base=window.location.href.substring(0,window.location.href.lastIndexOf('/')+1);
   const catData=CATS.map((cat,i)=>{
-    const p=Math.round(scores[i]/cat.max*100);
+    const p=Math.min(100,Math.round(scores[i]/cat.max*100));
     const ti=p<40?0:p<75?1:2;
     const tl=p<40?'Not Ready':p<75?'Emerging Readiness':'Operating at Scale';
     const col=scoreCol(p);
@@ -1299,7 +1304,7 @@ function buildReportHTML(){
     return {name:cat.name,pct:p,tierLabel:tl,col,cbg,desc:CAT_DESC[ids[i]][ti]};
   });
   let li=0,lp=101;
-  CATS.forEach((c,i)=>{const p=Math.round(scores[i]/c.max*100);if(p<lp){lp=p;li=i;}});
+  CATS.forEach((c,i)=>{const p=Math.min(100,Math.round(scores[i]/c.max*100));if(p<lp){lp=p;li=i;}});
   const gid=ids[li],g=GAP[gid];
   const gc=scoreCol(lp);
   const gbg=scoreColAlpha(lp,.1);
