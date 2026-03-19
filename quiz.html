@@ -814,17 +814,63 @@ footer p{font-size:12px;color:rgba(0,0,0,.55);font-weight:500}
 
 /* ─── RESPONSIVE ─── */
 @media(max-width:700px){
-  .nav{padding:14px 20px}
-  .prog-wrap{padding:12px 20px}
-  .qual-outer,.lead-outer{padding:40px 20px}
-  .quiz-top-bar{padding:12px 20px}
-  .cat-card{padding:24px 20px}
-  .gap-card{padding:28px 24px}
+  /* Nav */
+  .nav{padding:12px 20px}
+  .nav img{height:60px}
+
+  /* Progress bar */
+  .prog-wrap{padding:10px 16px;top:84px}
+  .prog-cat{font-size:10px;letter-spacing:.05em}
+  .prog-count{font-size:11px}
+
+  /* Qualifying & Lead */
+  .qual-outer,.lead-outer{padding:32px 20px}
+  .qual-h{font-size:clamp(28px,7vw,38px)}
+  .qual-sub,.lead-sub{font-size:15px}
+  .qual-select,.lead-input{font-size:16px}/* prevent iOS zoom */
+
+  /* Quiz section */
+  #secQuiz{height:calc(100vh - 84px - 52px)}
+  .quiz-outer{padding:16px 20px 40px}
+  .q-text{font-size:clamp(17px,4.5vw,22px)}
+  .a-btn{padding:14px 16px;min-height:52px}/* 44px+ touch target */
+  .a-letter{width:32px;height:32px;font-size:12px}
+
+  /* Results */
+  .score-hero{padding:40px 20px 36px;margin-bottom:32px}
+  .gauge-wrap{width:280px}
+  .gauge-wrap svg{width:280px}
+  .score-hero h1{font-size:clamp(22px,5.5vw,32px)}
+  .score-hero p{font-size:15px}
+  .res-bullets li{font-size:14px}
+  .res-inner{padding:0 16px}
+
+  /* Category cards */
+  .cat-card{padding:20px 18px}
+  .cat-card-name{font-size:15px}
+  .cat-card-pct{font-size:28px}
+  .cat-card-desc{font-size:14px}
+  .section-title{font-size:22px}
+
+  /* Gap card */
+  .gap-card{padding:28px 20px}
+  .gap-cat-name{font-size:clamp(18px,5vw,26px)}
+  .gap-block-content{font-size:14px}
+  .gap-actions li{font-size:14px}
+
+  /* CTA */
   .cta-section{grid-template-columns:1fr}
-  .cta-image{display:none}
-  .cta-content{padding:40px 24px}
+  .cta-image{height:220px;overflow:hidden}
+  .cta-image img{object-position:center 20%}
+  .cta-content{padding:36px 24px}
+  .cta-section h2{font-size:clamp(22px,5.5vw,30px)}
+  .cta-section p{font-size:15px}
   .cta-btns{flex-direction:column}
-  .btn-cta-primary,.btn-cta-outline{text-align:center}
+  .btn-cta-primary,.btn-cta-outline{text-align:center;width:100%}
+  .btn-download{width:100%;justify-content:center}
+
+  /* Footer */
+  footer{padding:24px 20px}
 }
 </style>
 </head>
@@ -983,8 +1029,8 @@ footer p{font-size:12px;color:rgba(0,0,0,.55);font-weight:500}
 
       <div class="cta-section">
         <div class="cta-content">
-          <h2>Ready to close the gap?</h2>
-          <p>Performit Live works with organisations to build the governance, clarity, and infrastructure needed to deploy an AI character responsibly and at scale.</p>
+          <h2 id="ctaH">Ready to close the gap?</h2>
+          <p id="ctaP">Performit Live works with organisations to build the governance, clarity, and infrastructure needed to deploy an AI character responsibly and at scale.</p>
           <ul class="cta-bullets">
             <li>Get practical steps to close your biggest readiness gaps</li>
             <li>Align your teams on governance, ownership, and behaviour standards</li>
@@ -1270,6 +1316,18 @@ function showResults(name='',email=''){
       <p class="gap-block-label">What to Address First</p>
       <ul class="gap-actions">${g.acts.map(a=>`<li>${a}</li>`).join('')}</ul>
     </div>`;
+  // Tier-specific CTA
+  const ctaCopy=[
+    {h:'Let\'s build your foundation together',
+     p:'Most organisations at this stage have the intent but not yet the infrastructure. Performit Live works with you to put the governance, ownership, and behaviour standards in place — so you can deploy with confidence, not risk.'},
+    {h:'You\'re closer than you think',
+     p:'The foundations are forming. Performit Live helps you close the remaining gaps quickly — formalising what you\'ve started, aligning your teams, and preparing you for a responsible, visible deployment.'},
+    {h:'You\'re ready — let\'s go live',
+     p:'Your readiness foundations are strong. Performit Live can validate your approach, stress-test your oversight framework, and help you launch your AI character with the confidence it deserves.'}
+  ];
+  const ctaTier=pct<40?0:pct<75?1:2;
+  document.getElementById('ctaH').textContent=ctaCopy[ctaTier].h;
+  document.getElementById('ctaP').textContent=ctaCopy[ctaTier].p;
   window.scrollTo(0,0);
 }
 
