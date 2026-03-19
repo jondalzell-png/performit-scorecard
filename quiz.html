@@ -167,7 +167,23 @@ body{
   transition:border-color .2s;
 }
 .qual-select:focus{outline:none;border-color:var(--orange)}
+.qual-select.error{border-color:rgba(245,166,35,.8);box-shadow:0 0 0 3px rgba(245,166,35,.15)}
 .qual-select option{background:#1a1a1a;color:#fff}
+.field-error{
+  display:none;
+  align-items:center;
+  gap:8px;
+  margin-top:10px;
+  padding:12px 16px;
+  background:rgba(245,166,35,.08);
+  border:1px solid rgba(245,166,35,.25);
+  border-radius:8px;
+  font-size:14px;
+  font-weight:600;
+  color:var(--orange);
+}
+.field-error.visible{display:flex}
+.field-error svg{flex-shrink:0}
 .btn-begin{
   width:100%;
   max-width:360px;
@@ -655,7 +671,7 @@ footer p{font-size:12px;color:rgba(0,0,0,.55);font-weight:500}
 
       <div class="qual-question">
         <span class="qual-question-label">What industry are you in?</span>
-        <select class="qual-select" id="industry">
+        <select class="qual-select" id="industry" onchange="clearError('industry','errIndustry')">
           <option value="" disabled selected>Select your industry</option>
           <option>Retail &amp; Consumer</option>
           <option>Hospitality, Events &amp; Tourism</option>
@@ -667,11 +683,15 @@ footer p{font-size:12px;color:rgba(0,0,0,.55);font-weight:500}
           <option>Public Sector</option>
           <option>Other</option>
         </select>
+        <div class="field-error" id="errIndustry">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#f5a623" stroke-width="1.5"/><path d="M8 5v4M8 11v.5" stroke="#f5a623" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Please select your industry to continue
+        </div>
       </div>
 
       <div class="qual-question">
         <span class="qual-question-label">What is your role?</span>
-        <select class="qual-select" id="role">
+        <select class="qual-select" id="role" onchange="clearError('role','errRole')">
           <option value="" disabled selected>Select your role</option>
           <option>C-Suite / Executive</option>
           <option>Director / Vice President</option>
@@ -682,6 +702,10 @@ footer p{font-size:12px;color:rgba(0,0,0,.55);font-weight:500}
           <option>Consultant / Agency</option>
           <option>Other</option>
         </select>
+        <div class="field-error" id="errRole">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#f5a623" stroke-width="1.5"/><path d="M8 5v4M8 11v.5" stroke="#f5a623" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Please select your role to continue
+        </div>
       </div>
 
       <div style="text-align:center;margin-top:40px">
@@ -855,10 +879,18 @@ const LETTERS=['A','B','C','D'];
 
 function show(id){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
 
+function clearError(selectId,errId){
+  document.getElementById(selectId).classList.remove('error');
+  document.getElementById(errId).classList.remove('visible');
+}
+
 function startQuiz(){
   const ind=document.getElementById('industry').value;
   const rol=document.getElementById('role').value;
-  if(!ind||!rol){alert('Please select both your industry and role to continue.');return;}
+  let valid=true;
+  if(!ind){document.getElementById('industry').classList.add('error');document.getElementById('errIndustry').classList.add('visible');valid=false;}
+  if(!rol){document.getElementById('role').classList.add('error');document.getElementById('errRole').classList.add('visible');valid=false;}
+  if(!valid){document.getElementById('errIndustry').scrollIntoView({behavior:'smooth',block:'center'});return;}
   document.getElementById('progWrap').style.display='block';
   showCatIntro(0);
 }
