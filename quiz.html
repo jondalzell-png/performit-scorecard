@@ -314,7 +314,19 @@ body.results-active{overflow:auto;height:auto}
   justify-content:center;
   padding:20px 40px 60px;
   overflow-y:auto;
+  position:relative;
 }
+.quiz-outer::before{
+  content:'';
+  position:absolute;
+  top:50%;left:50%;
+  transform:translate(-50%,-50%);
+  width:700px;height:500px;
+  background:radial-gradient(ellipse at center,rgba(245,166,35,.04) 0%,transparent 70%);
+  pointer-events:none;
+  z-index:0;
+}
+.quiz-inner{position:relative;z-index:1}
 .quiz-inner{
   max-width:680px;
   width:100%;
@@ -1059,7 +1071,7 @@ function renderQ(){
   const qInCat=qi - CATS.slice(0,q.c).reduce((a,_,i)=>a+QS.filter(x=>x.c===i).length,0);
   const totalInCat=QS.filter(x=>x.c===q.c).length;
   document.getElementById('progFill').style.width=(qi/QS.length*100)+'%';
-  document.getElementById('progCat').textContent=CATS[q.c].name+' · '+(qInCat+1)+' of '+totalInCat;
+  document.getElementById('progCat').textContent=CATS[q.c].name;
   document.getElementById('progCount').textContent=(qi+1)+' / '+QS.length;
   const card=document.getElementById('qCard');
   card.classList.remove('q-card');void card.offsetWidth;card.classList.add('q-card');
