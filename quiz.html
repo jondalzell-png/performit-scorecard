@@ -863,46 +863,50 @@ const CATS = [
 ];
 
 const QS = [
-  {c:0,t:'If an AI digital character were introduced, where would it most likely appear?',
-   a:[{t:'Internal or private use only',s:30},{t:'Limited or pilot environments',s:60},{t:'Customer-facing or public environments',s:90},{t:'Highly visible or brand-defining contexts',s:120}]},
-  {c:0,t:'How closely would such a character be associated with your organisation\'s brand?',
-   a:[{t:'Minimal — not directly linked to the brand',s:30},{t:'Some alignment — recognisable but not central',s:60},{t:'Clearly branded — part of our public identity',s:90},{t:'Core to brand — central to how we\'re known',s:120}]},
-  {c:0,t:'How sensitive would the environment be where this character appears?',
-   a:[{t:'Very low — internal or tightly controlled',s:30},{t:'Low to moderate — limited public exposure',s:60},{t:'Moderately sensitive — regular public interaction',s:90},{t:'Highly sensitive — regulated or high-stakes environment',s:120}]},
-  {c:0,t:'How frequently would people likely interact with the character?',
-   a:[{t:'Rarely — occasional internal testing only',s:30},{t:'Occasionally — limited pilot or preview',s:60},{t:'Regularly — consistent public interactions',s:90},{t:'Constantly — high-volume, always-on deployment',s:120}]},
-  {c:0,t:'How much scrutiny would the character\'s behaviour likely receive?',
-   a:[{t:'Very little — minimal visibility',s:30},{t:'Some — limited audience awareness',s:60},{t:'Significant — press or public attention possible',s:90},{t:'Intense — high-profile or regulated context',s:120}]},
-  {c:1,t:'How clearly are expectations defined for how such a character should behave?',
-   a:[{t:'Not defined',s:25},{t:'Implicit or assumed',s:50},{t:'Broadly understood',s:75},{t:'Clearly defined and documented',s:100}]},
-  {c:1,t:'How well documented are the rules for what the character can and cannot say?',
-   a:[{t:'Not documented at all',s:25},{t:'Informally understood but not written down',s:50},{t:'Partially documented — some rules exist',s:75},{t:'Fully documented and shared across teams',s:100}]},
-  {c:1,t:'How sensitive would conversations or interactions likely be?',
-   a:[{t:'Very low sensitivity',s:25},{t:'Moderate — some personal or brand-sensitive topics',s:50},{t:'High — emotionally or legally sensitive topics',s:75},{t:'Extremely sensitive — regulated or high-risk interactions',s:100}]},
-  {c:1,t:'How acceptable would unexpected or inappropriate responses be?',
-   a:[{t:'Acceptable — low stakes, easily corrected',s:25},{t:'Occasionally tolerable — limited exposure',s:50},{t:'Rarely acceptable — would cause concern',s:75},{t:'Never acceptable — would cause significant harm',s:100}]},
-  {c:1,t:'How important would it be for the character to know when not to respond?',
-   a:[{t:'Not critical',s:25},{t:'Somewhat important',s:50},{t:'Very important',s:75},{t:'Critical — silence or handoff must be reliable',s:100}]},
-  {c:2,t:'Who would ultimately be accountable for the character\'s behaviour?',
-   a:[{t:'Unclear or undecided',s:25},{t:'Informal ownership — assumed but not assigned',s:50},{t:'Shared responsibility across teams',s:75},{t:'Clearly defined owner with authority',s:100}]},
-  {c:2,t:'How aligned are stakeholders on what this character should represent?',
-   a:[{t:'Not aligned — significant disagreement exists',s:25},{t:'Partially aligned — broad direction only',s:50},{t:'Mostly aligned — some gaps remain',s:75},{t:'Fully aligned — shared understanding across all teams',s:100}]},
-  {c:2,t:'Does a named individual currently own decisions about this AI character?',
-   a:[{t:'No — ownership is unclear or absent',s:25},{t:'Not formally — it\'s assumed but not assigned',s:50},{t:'Partially — a team leads it but without clear authority',s:75},{t:'Yes — a named owner with decision-making authority exists',s:100}]},
-  {c:2,t:'How prepared is the organisation to pause or stop the character if needed?',
-   a:[{t:'Not prepared — no process exists',s:25},{t:'Somewhat prepared — would take significant effort',s:50},{t:'Mostly prepared — process exists but untested',s:75},{t:'Fully prepared — tested and ready to act immediately',s:100}]},
-  {c:2,t:'How clear is internal communication around this initiative today?',
-   a:[{t:'Very unclear — most teams are unaware',s:25},{t:'Somewhat unclear — limited awareness',s:50},{t:'Fairly clear — key teams informed',s:75},{t:'Very clear — organisation-wide alignment exists',s:100}]},
-  {c:3,t:'If the character caused concern publicly, how quickly could action be taken?',
-   a:[{t:'Not sure — no process in place',s:20},{t:'Within days — would need to escalate first',s:40},{t:'Within hours — response team exists',s:60},{t:'Immediately — real-time monitoring and response ready',s:80}]},
-  {c:3,t:'How comfortable are teams discussing potential risks openly today?',
-   a:[{t:'Not comfortable — risks are avoided or minimised',s:20},{t:'Somewhat comfortable — surface-level only',s:40},{t:'Fairly comfortable — open in most discussions',s:60},{t:'Very comfortable — active risk culture in place',s:80}]},
-  {c:3,t:'How likely is it that issues would be noticed quickly?',
-   a:[{t:'Unlikely — no monitoring in place',s:20},{t:'Somewhat likely — ad hoc awareness only',s:40},{t:'Fairly likely — some monitoring exists',s:60},{t:'Very likely — active monitoring and alerts in place',s:80}]},
-  {c:3,t:'How confident are you in responding consistently across teams?',
-   a:[{t:'Not confident — no shared protocols',s:20},{t:'Somewhat confident — informal alignment only',s:40},{t:'Fairly confident — protocols being developed',s:60},{t:'Very confident — clear, tested response protocols',s:80}]},
-  {c:3,t:'Overall, how prepared does the organisation feel for public interaction through AI?',
-   a:[{t:'Not prepared — significant gaps remain',s:20},{t:'Somewhat prepared — awareness but not readiness',s:40},{t:'Fairly prepared — good foundations in place',s:60},{t:'Fully prepared — confident and ready to deploy',s:80}]}
+  // ── Exposure & Visibility ──
+  {c:0,t:'Where in your customer or audience journey would an AI character most likely sit?',
+   a:[{t:'We haven\'t mapped this yet',s:30},{t:'At a single, defined touchpoint',s:60},{t:'Across several customer-facing moments',s:90},{t:'At the core of our brand experience',s:120}]},
+  {c:0,t:'If your AI character said something off-brand or inappropriate, how quickly would your audience notice?',
+   a:[{t:'Unlikely anyone would notice quickly',s:30},{t:'A small group might flag it over time',s:60},{t:'Our audience would notice and share it within hours',s:90},{t:'It would spread immediately — our audience is highly engaged',s:120}]},
+  {c:0,t:'How closely tied to your organisation\'s identity would the character be?',
+   a:[{t:'A utility tool — not associated with our brand',s:30},{t:'Branded, but not central to our identity',s:60},{t:'Clearly recognisable as us — part of our public identity',s:90},{t:'The face of our brand in that context',s:120}]},
+  {c:0,t:'Who would primarily interact with this character?',
+   a:[{t:'Internal staff during testing only',s:30},{t:'A small, defined group of customers',s:60},{t:'A broad and varied public audience',s:90},{t:'High-value or high-profile audiences where mistakes would matter most',s:120}]},
+  {c:0,t:'Does your organisation currently have a defined visual identity or design brief for the AI character?',
+   a:[{t:'No — the character is entirely conceptual at this stage',s:30},{t:'We have a rough idea but nothing designed or documented',s:60},{t:'We have concept work or early designs in progress',s:90},{t:'We have a finalised visual identity, name, and character brief ready',s:120}]},
+  // ── Expectations & Behaviour ──
+  {c:1,t:'If someone asked what your AI character should and shouldn\'t say, how quickly could you answer?',
+   a:[{t:'We haven\'t defined this yet',s:25},{t:'We\'d have a general sense but nothing written down',s:50},{t:'We could describe it broadly but have no formal brief',s:75},{t:'We have documented guidelines we could share immediately',s:100}]},
+  {c:1,t:'Have you defined the specific situations where the character should refuse to engage or hand off to a human?',
+   a:[{t:'No — we haven\'t thought about this',s:25},{t:'Informally — there are some assumed limits',s:50},{t:'Partially — some scenarios are defined, not all',s:75},{t:'Yes — clear escalation triggers are documented and agreed',s:100}]},
+  {c:1,t:'How would you describe your AI character\'s tone and personality today?',
+   a:[{t:'We don\'t have one defined',s:25},{t:'It would loosely follow our general brand voice',s:50},{t:'We have brand guidelines it would follow',s:75},{t:'We have a specific character brief covering tone, personality, and boundaries',s:100}]},
+  {c:1,t:'If the character gave a response that was technically correct but felt wrong for your brand, who would catch it?',
+   a:[{t:'No one has this responsibility',s:25},{t:'Someone would probably notice eventually',s:50},{t:'A specific person or team reviews interactions',s:75},{t:'We have a defined review and feedback process in place',s:100}]},
+  {c:1,t:'If the character\'s behaviour needed to change urgently — say, during a sensitive news event — how would your organisation respond?',
+   a:[{t:'We have no process for this',s:25},{t:'We\'d figure it out as we went',s:50},{t:'Someone would take ownership but it isn\'t formalised',s:75},{t:'We have a clear process to update or pause the character quickly',s:100}]},
+  // ── Ownership & Accountability ──
+  {c:2,t:'If something went wrong with your AI character, who in your organisation would own the response?',
+   a:[{t:'Genuinely unclear — no one has been assigned',s:25},{t:'It would land with whoever was most available',s:50},{t:'A senior team would step in, but without a defined process',s:75},{t:'A named individual with clear authority would lead immediately',s:100}]},
+  {c:2,t:'How would you describe leadership buy-in for an AI character initiative right now?',
+   a:[{t:'Leadership aren\'t engaged or aware',s:25},{t:'Broad awareness but no clear sponsorship',s:50},{t:'A senior leader supports it informally',s:75},{t:'A named executive sponsor is actively involved',s:100}]},
+  {c:2,t:'Has your organisation undertaken any legal or compliance review of a planned AI character deployment?',
+   a:[{t:'No — this hasn\'t been raised yet',s:25},{t:'We\'ve flagged it informally but had no formal review',s:50},{t:'Legal or compliance have been consulted at a high level',s:75},{t:'A formal compliance review has been completed and signed off',s:100}]},
+  {c:2,t:'If you needed to pause or permanently withdraw the AI character, how confident are you that you could act quickly?',
+   a:[{t:'No process — it would be chaotic',s:25},{t:'We could do it but it would take significant effort',s:50},{t:'There\'s a rough process but it hasn\'t been tested',s:75},{t:'We have a tested process and could act immediately',s:100}]},
+  {c:2,t:'How aligned are your key functions — marketing, legal, technology, and operations — on this initiative today?',
+   a:[{t:'Teams are largely unaware or disengaged',s:25},{t:'One or two areas are aware but it\'s not cross-functional',s:50},{t:'Most relevant teams are informed but not yet aligned',s:75},{t:'Active cross-functional agreement and shared accountability exists',s:100}]},
+  // ── Response & Oversight ──
+  {c:3,t:'If your AI character started behaving unexpectedly in a live environment, how quickly would you know?',
+   a:[{t:'When someone complained publicly',s:20},{t:'Within a few days through general awareness',s:40},{t:'Within hours through a monitoring process',s:60},{t:'In real time — active oversight is in place',s:80}]},
+  {c:3,t:'Does your organisation have an incident response plan specifically for AI-related issues?',
+   a:[{t:'No — and it hasn\'t been discussed',s:20},{t:'No formal plan — we\'d rely on general crisis comms',s:40},{t:'One is being developed but isn\'t complete',s:60},{t:'Yes — a specific AI incident protocol exists and has been reviewed',s:80}]},
+  {c:3,t:'How would you rate your ability to test the character\'s behaviour before it goes live?',
+   a:[{t:'No testing framework exists',s:20},{t:'We\'d run informal tests but nothing structured',s:40},{t:'A testing approach exists but isn\'t comprehensive',s:60},{t:'We have a rigorous pre-launch testing and sign-off process',s:80}]},
+  {c:3,t:'How prepared is your organisation to manage data generated by interactions with the AI character?',
+   a:[{t:'We haven\'t considered the data implications yet',s:20},{t:'We\'re aware it\'s an issue but have no process in place',s:40},{t:'We\'ve identified the implications but haven\'t fully addressed them',s:60},{t:'We have clear data governance policies covering collection, storage, and use',s:80}]},
+  {c:3,t:'Thinking honestly about where you are today — what best describes your organisation\'s readiness?',
+   a:[{t:'We don\'t know where to start',s:20},{t:'We have intent but lack ownership and governance',s:40},{t:'We have foundations but need to document and align',s:60},{t:'We\'re close — we need to test and validate before going live',s:80}]}
 ];
 
 const TIERS=[
@@ -921,17 +925,17 @@ const TIERS=[
 ];
 
 const CAT_DESC={
-  ev:['Your organisation\'s current deployment context involves limited public exposure — risks are lower, but so is the strategic visibility of the character.','Your organisation has growing public-facing exposure. Careful positioning around brand, tone, and oversight will help manage reputational risk.','Your organisation operates in high-visibility environments — ideal for a character deployment, requiring robust governance to match the exposure level.'],
-  eb:['Expectations around how the AI character should behave may still be informal or undefined. Teams may not yet share a consistent understanding of tone, boundaries, or interaction standards.','Some expectations are in place but need formalising. Greater consistency of tone and behaviour standards would benefit from clearer documentation.','Clear, documented behaviour expectations are in place. Teams share a consistent understanding of tone, boundaries, and interaction standards.'],
-  oa:['Responsibility for the AI character may still be unclear or distributed informally. Without clear ownership, decision-making and accountability become difficult if issues arise.','Ownership is emerging but accountability structures need strengthening. Clearer definition of decision authority and escalation paths would reduce risk.','Clear ownership and accountability structures are in place. Decision-making authority and escalation paths are well-defined across the organisation.'],
-  ro:['The organisation may not yet have clear processes for monitoring or responding to issues once the AI character is live. This is a critical gap before any public deployment.','Some response capability exists but monitoring and oversight processes need development and testing before live deployment at scale.','Strong monitoring and response protocols are in place. The organisation can detect and address issues quickly once the character is live.']
+  ev:['Your organisation hasn\'t yet mapped where or how prominently an AI character would operate. Before anything else, defining the deployment context is the essential first step.','Your organisation has a developing sense of where the character would appear and who would see it. Formalising this — including a visual identity and brand brief — will sharpen readiness significantly.','Your organisation has strong clarity on the character\'s deployment context, audience, and brand positioning. The foundations for a responsible and visible deployment are taking shape.'],
+  eb:['Behavioural expectations for the AI character are largely undefined. Without a brief covering tone, boundaries, and escalation triggers, inconsistent or off-brand responses become a serious risk.','Some behavioural standards are forming, but they need documenting and sharing across teams. A formal character brief would close the gap between assumption and consistent delivery.','Clear, documented behaviour standards are in place. Teams understand the character\'s tone, boundaries, and when to escalate — reducing the risk of unpredictable responses.'],
+  oa:['Ownership, leadership sponsorship, and compliance review are not yet in place. Without these foundations, decision-making becomes reactive and accountability breaks down when issues arise.','Ownership structures are emerging but need formalising. Legal or compliance review, a named sponsor, and cross-functional alignment would significantly strengthen your readiness.','Clear ownership, executive sponsorship, and compliance review are established. Accountability is defined and the organisation is structurally prepared to govern the AI character responsibly.'],
+  ro:['Critical oversight gaps remain — monitoring, incident response, data governance, and pre-launch testing are not yet in place. These are essential before any live deployment.','Some response and oversight capability exists, but monitoring, data governance, and testing protocols need development and validation before the character goes live at scale.','Strong oversight infrastructure is in place. The organisation can detect issues quickly, respond consistently, and manage data responsibly once the character is live.']
 };
 
 const GAP={
-  ev:{rec:'Map your deployment environment and assess brand risk before going live.',why:'Without understanding where and how the character will appear, it\'s impossible to prepare appropriate governance, tone, and oversight measures tailored to the actual risk level.',acts:['Define where the character will appear and who will see it','Assess reputational risk across each deployment context','Align brand guidelines to character interactions']},
-  eb:{rec:'Define clear behavioural standards and document them across teams.',why:'Without documented expectations, different teams will interpret the character\'s role differently — creating inconsistency and reputational risk once the character is live.',acts:['Create a behaviour brief for the AI character','Define tone, style, and boundary guidelines','Ensure all teams share a consistent understanding']},
-  oa:{rec:'Establish clear ownership and governance for the AI character.',why:'Without clear accountability, organisations struggle to make decisions quickly when problems occur. Ownership ensures someone is responsible for behaviour, governance, and escalation decisions at all times.',acts:['Assign a clear internal owner for the AI character','Define escalation paths if issues occur','Align stakeholders on decision authority']},
-  ro:{rec:'Build monitoring and response protocols before deployment.',why:'Without real-time oversight, issues can escalate before anyone notices. A tested response protocol is essential for any public-facing AI character deployment.',acts:['Establish real-time monitoring for character interactions','Create and document an incident response protocol','Test your response capability before going live']}
+  ev:{rec:'Define your deployment context and build a visual identity for the character.',why:'Without knowing where the character will appear, who will see it, and what it looks like, every other readiness decision lacks a foundation. A character brief and visual identity are the starting point for everything that follows.',acts:['Map where the character will appear and who will interact with it','Commission or brief a visual identity, name, and character concept','Assess brand and reputational risk across each deployment context']},
+  eb:{rec:'Create a formal behaviour brief and document it across teams.',why:'Without written standards, every team will interpret the character\'s role differently. Inconsistent tone, missing escalation triggers, and undefined boundaries are among the most common causes of AI character failures in live environments.',acts:['Write a behaviour brief covering tone, personality, and boundaries','Define the specific situations where the character must hand off to a human','Distribute and align the brief across all teams who will interact with or manage the character']},
+  oa:{rec:'Establish ownership, secure executive sponsorship, and initiate a compliance review.',why:'Governance failures — not technical ones — are the most common reason AI character deployments stall or cause harm. Without a named owner, legal sign-off, and cross-functional alignment, decisions become slow, reactive, and poorly coordinated.',acts:['Assign a named individual with authority over the AI character','Brief legal and compliance teams and initiate a formal review','Secure executive sponsorship and align marketing, technology, and operations']},
+  ro:{rec:'Build your monitoring, incident response, and data governance framework before going live.',why:'Most organisations discover their oversight gaps only after something goes wrong publicly. Monitoring, a tested incident plan, data governance, and pre-launch testing are not optional — they are the infrastructure that makes responsible deployment possible.',acts:['Establish real-time monitoring for character interactions','Create and document an AI-specific incident response protocol','Define data governance policies covering what is collected, stored, and how long it is retained']}
 };
 
 // ── STATE ──
