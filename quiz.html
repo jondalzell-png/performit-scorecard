@@ -8,92 +8,637 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',sans-serif;background:#0a0a0a;color:#fff;min-height:100vh}
-:root{--orange:#f5a623;--surface:#131313;--surface2:#1c1c1c;--border:rgba(255,255,255,0.08);--muted:rgba(255,255,255,0.55)}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;
+  background:#0a0a0a;
+  color:#fff;
+  min-height:100vh;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+:root{
+  --orange:#f5a623;
+  --orange-dark:#d4891a;
+  --bg:#0a0a0a;
+  --surface:#131313;
+  --surface2:#1a1a1a;
+  --border:rgba(255,255,255,0.08);
+  --border-orange:rgba(245,166,35,0.25);
+  --muted:rgba(255,255,255,0.55);
+  --muted2:rgba(255,255,255,0.35);
+}
 
-/* NAV */
-.nav{padding:18px 40px;display:flex;justify-content:center;border-bottom:1px solid var(--border);position:sticky;top:0;background:#0a0a0a;z-index:100}
-.nav img{height:52px}
+/* ─── NAV ─── */
+.nav{
+  padding:16px 40px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  background:rgba(10,10,10,0.92);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  z-index:100;
+}
+.nav img{height:56px}
 
-/* PROGRESS */
-.prog-wrap{max-width:720px;margin:0 auto;padding:24px 40px 0;display:none}
-.prog-bar{height:3px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden}
-.prog-fill{height:100%;background:var(--orange);border-radius:2px;transition:width .5s cubic-bezier(.4,0,.2,1);width:0%}
-.prog-meta{display:flex;justify-content:space-between;margin-top:8px;font-size:12px}
-.prog-cat{color:var(--orange);font-weight:700;letter-spacing:.05em;text-transform:uppercase;font-size:11px}
-.prog-count{color:var(--muted)}
+/* ─── PROGRESS ─── */
+.prog-wrap{
+  background:rgba(10,10,10,0.95);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:16px 40px;
+  display:none;
+  position:sticky;
+  top:89px;
+  z-index:90;
+}
+.prog-header{
+  max-width:800px;
+  margin:0 auto;
+}
+.prog-meta{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+.prog-cat{
+  color:var(--orange);
+  font-weight:700;
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+.prog-count{
+  color:var(--muted);
+  font-size:13px;
+  font-weight:500;
+}
+.prog-bar{
+  height:4px;
+  background:rgba(255,255,255,0.08);
+  border-radius:2px;
+  overflow:hidden;
+}
+.prog-fill{
+  height:100%;
+  background:var(--orange);
+  border-radius:2px;
+  transition:width .5s cubic-bezier(.4,0,.2,1);
+  width:0%;
+  box-shadow:0 0 8px rgba(245,166,35,.4);
+}
 
-/* SECTIONS */
+/* ─── SECTIONS ─── */
 .sec{display:none}.sec.active{display:block}
 
-/* QUALIFYING */
-.qual-wrap{max-width:540px;margin:0 auto;padding:64px 40px;text-align:center}
-.eyebrow{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);margin-bottom:14px}
-.qual-h{font-size:clamp(24px,4vw,34px);font-weight:800;line-height:1.2;margin-bottom:10px}
-.qual-sub{font-size:16px;color:var(--muted);line-height:1.6;margin-bottom:44px}
-.field{margin-bottom:16px;text-align:left}
-.field label{display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:7px}
-.field select{width:100%;padding:14px 18px;background:var(--surface);border:1px solid var(--border);border-radius:10px;color:#fff;font-family:inherit;font-size:15px;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M5 6L0 0h10z' fill='rgba(255,255,255,0.35)'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;cursor:pointer;transition:border-color .2s}
-.field select:focus{outline:none;border-color:var(--orange)}
-.field select option{background:#1c1c1c}
-.btn-p{width:100%;padding:16px;background:var(--orange);color:#000;font-family:inherit;font-size:16px;font-weight:700;border:none;border-radius:10px;cursor:pointer;margin-top:8px;transition:all .2s}
-.btn-p:hover{background:#ffb733;transform:translateY(-2px)}
+/* ─── QUALIFYING ─── */
+.qual-outer{
+  min-height:calc(100vh - 89px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:60px 24px;
+}
+.qual-inner{
+  max-width:680px;
+  width:100%;
+  text-align:center;
+}
+.qual-eyebrow{
+  display:inline-block;
+  background:rgba(245,166,35,.1);
+  border:1px solid rgba(245,166,35,.25);
+  color:var(--orange);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  padding:6px 16px;
+  border-radius:100px;
+  margin-bottom:24px;
+}
+.qual-h{
+  font-size:clamp(28px,5vw,48px);
+  font-weight:800;
+  line-height:1.15;
+  margin-bottom:14px;
+  letter-spacing:-.02em;
+}
+.qual-h span{color:var(--orange)}
+.qual-sub{
+  font-size:17px;
+  color:var(--muted);
+  line-height:1.65;
+  margin-bottom:48px;
+  max-width:500px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.qual-question{margin-bottom:36px;text-align:left}
+.qual-question-label{
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--muted);
+  margin-bottom:14px;
+  display:block;
+}
+.qual-options{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:10px;
+}
+.qual-opt{
+  padding:14px 18px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+  color:var(--muted);
+  font-family:inherit;
+  font-size:14px;
+  font-weight:500;
+  cursor:pointer;
+  transition:all .2s ease;
+  text-align:left;
+  line-height:1.3;
+}
+.qual-opt:hover{
+  border-color:var(--orange);
+  color:#fff;
+  background:rgba(245,166,35,.06);
+}
+.qual-opt.selected{
+  border-color:var(--orange);
+  background:rgba(245,166,35,.12);
+  color:var(--orange);
+  font-weight:600;
+}
+.btn-begin{
+  width:100%;
+  max-width:360px;
+  padding:18px 32px;
+  background:var(--orange);
+  color:#000;
+  font-family:inherit;
+  font-size:17px;
+  font-weight:800;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  transition:all .2s ease;
+  letter-spacing:.01em;
+  margin-top:8px;
+}
+.btn-begin:hover{background:#ffb733;transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,166,35,.3)}
 
-/* QUIZ */
-.quiz-wrap{max-width:720px;margin:0 auto;padding:52px 40px}
-.q-card{animation:fadeUp .3s ease}
-@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-.q-text{font-size:clamp(20px,3.2vw,28px);font-weight:700;line-height:1.35;margin-bottom:34px;color:#fff}
-.a-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.a-btn{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 22px;text-align:left;color:#fff;font-family:inherit;font-size:15px;font-weight:500;line-height:1.4;cursor:pointer;transition:all .2s ease;width:100%}
-.a-btn:hover{border-color:var(--orange);background:rgba(245,166,35,.07);transform:translateY(-2px)}
-.a-btn.selected{border-color:var(--orange);background:var(--orange);color:#000;font-weight:700}
+/* ─── CATEGORY INTRO ─── */
+.cat-intro-outer{
+  min-height:calc(100vh - 160px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:60px 24px;
+}
+.cat-intro-inner{
+  max-width:620px;
+  width:100%;
+  text-align:center;
+}
+.cat-num-badge{
+  width:72px;
+  height:72px;
+  border-radius:50%;
+  background:var(--orange);
+  color:#000;
+  font-size:28px;
+  font-weight:900;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 28px;
+  box-shadow:0 8px 32px rgba(245,166,35,.35);
+}
+.cat-intro-name{
+  font-size:clamp(28px,5vw,44px);
+  font-weight:800;
+  line-height:1.15;
+  margin-bottom:14px;
+  letter-spacing:-.02em;
+}
+.cat-intro-desc{
+  font-size:17px;
+  color:var(--muted);
+  line-height:1.65;
+  margin-bottom:40px;
+  max-width:480px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.btn-start-cat{
+  display:inline-block;
+  padding:16px 40px;
+  background:var(--orange);
+  color:#000;
+  font-family:inherit;
+  font-size:16px;
+  font-weight:700;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  transition:all .2s;
+}
+.btn-start-cat:hover{background:#ffb733;transform:translateY(-2px)}
 
-/* RESULTS */
-.res-wrap{max-width:860px;margin:0 auto;padding:60px 40px}
-.gauge-sec{text-align:center;margin-bottom:52px;padding-bottom:52px;border-bottom:1px solid var(--border)}
-.tier-badge{display:inline-block;padding:6px 18px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:20px}
-.t-nr{background:rgba(220,50,50,.15);color:#ff6b6b;border:1px solid rgba(220,50,50,.3)}
-.t-em{background:rgba(245,166,35,.15);color:var(--orange);border:1px solid rgba(245,166,35,.3)}
-.t-op{background:rgba(80,200,80,.15);color:#6ddc6d;border:1px solid rgba(80,200,80,.3)}
-.res-h{font-size:clamp(22px,3.8vw,36px);font-weight:800;line-height:1.2;margin-bottom:16px;max-width:680px;margin-left:auto;margin-right:auto}
-.res-sum{font-size:17px;color:var(--muted);line-height:1.7;max-width:620px;margin:0 auto 22px}
-.res-bul{list-style:none;display:inline-block;text-align:left}
-.res-bul li{font-size:15px;color:var(--muted);padding:5px 0 5px 24px;position:relative}
-.res-bul li::before{content:'✓';position:absolute;left:0;color:var(--orange);font-weight:700}
-.sec-h{font-size:22px;font-weight:800;text-align:center;margin-bottom:26px}
-.cats-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:40px}
-.cat-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px}
-.cat-name{font-size:15px;font-weight:700;margin-bottom:6px}
-.cat-desc{font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:16px}
-.cat-bar-bg{height:5px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;margin-bottom:8px}
-.cat-bar-fill{height:100%;border-radius:3px;transition:width 1.3s cubic-bezier(.4,0,.2,1);width:0%}
-.cat-meta{display:flex;justify-content:space-between;font-size:13px}
-.cat-pct{font-weight:700}.cat-tier{color:var(--muted)}
-.gap-card{background:var(--orange);border-radius:20px;padding:36px;margin-bottom:36px;color:#000}
-.gap-ey{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.65;margin-bottom:4px}
-.gap-name{font-size:26px;font-weight:800;margin-bottom:24px}
-.gap-st{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;opacity:.65;margin-bottom:6px}
-.gap-rec{font-size:17px;font-weight:700;margin-bottom:10px}
-.gap-why{font-size:14px;line-height:1.65;opacity:.8;margin-bottom:20px}
-.gap-list{list-style:none}
-.gap-list li{font-size:14px;padding:5px 0 5px 20px;position:relative;opacity:.85;line-height:1.5}
-.gap-list li::before{content:'→';position:absolute;left:0;font-weight:700}
-.cta-box{background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:48px;text-align:center}
-.cta-box h3{font-size:clamp(20px,3vw,28px);font-weight:800;margin-bottom:12px}
-.cta-box p{font-size:16px;color:var(--muted);max-width:460px;margin:0 auto 28px;line-height:1.6}
-.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.btn-o{padding:14px 28px;border:1px solid var(--orange);color:var(--orange);background:transparent;font-family:inherit;font-size:15px;font-weight:600;border-radius:10px;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block}
-.btn-o:hover{background:rgba(245,166,35,.1)}
-footer{background:var(--orange);padding:28px;text-align:center}
-footer img{height:40px;display:block;margin:0 auto 6px}
-footer p{font-size:12px;color:rgba(0,0,0,.55)}
-@media(max-width:600px){
+/* ─── QUIZ ─── */
+.quiz-outer{
+  min-height:calc(100vh - 160px);
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding:60px 24px 40px;
+}
+.quiz-inner{
+  max-width:800px;
+  width:100%;
+}
+.q-card{animation:fadeUp .35s cubic-bezier(.4,0,.2,1)}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.q-text{
+  font-size:clamp(22px,3.5vw,32px);
+  font-weight:700;
+  line-height:1.3;
+  margin-bottom:36px;
+  color:#fff;
+  letter-spacing:-.01em;
+}
+.a-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+}
+.a-btn{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:14px;
+  padding:20px 22px;
+  text-align:left;
+  color:#fff;
+  font-family:inherit;
+  font-size:15px;
+  font-weight:500;
+  line-height:1.45;
+  cursor:pointer;
+  transition:all .2s ease;
+  width:100%;
+  position:relative;
+  overflow:hidden;
+}
+.a-btn::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  opacity:0;
+  transition:opacity .2s;
+  background:linear-gradient(135deg,rgba(245,166,35,.06),transparent);
+}
+.a-btn:hover{border-color:var(--orange);transform:translateY(-2px);box-shadow:0 4px 20px rgba(245,166,35,.1)}
+.a-btn:hover::before{opacity:1}
+.a-btn.selected{
+  border-color:var(--orange);
+  background:linear-gradient(135deg,rgba(245,166,35,.18),rgba(245,166,35,.08));
+  box-shadow:0 4px 24px rgba(245,166,35,.2);
+}
+.a-btn.selected .a-letter{
+  background:var(--orange);
+  color:#000;
+}
+.a-letter{
+  width:30px;
+  height:30px;
+  border-radius:50%;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.1);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  font-weight:800;
+  flex-shrink:0;
+  transition:all .2s;
+  margin-top:1px;
+  letter-spacing:0;
+}
+.a-text{flex:1}
+
+/* ─── RESULTS ─── */
+.res-outer{padding:0 24px 80px}
+.res-inner{max-width:900px;margin:0 auto}
+
+/* Hero score block */
+.score-hero{
+  text-align:center;
+  padding:80px 24px 60px;
+  border-bottom:1px solid var(--border);
+  margin-bottom:72px;
+}
+.score-tier-badge{
+  display:inline-block;
+  padding:7px 20px;
+  border-radius:100px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  margin-bottom:32px;
+}
+.t-nr{background:rgba(220,50,50,.12);color:#ff7070;border:1px solid rgba(220,50,50,.3)}
+.t-em{background:rgba(245,166,35,.12);color:var(--orange);border:1px solid rgba(245,166,35,.3)}
+.t-op{background:rgba(80,200,80,.12);color:#5edb5e;border:1px solid rgba(80,200,80,.3)}
+.gauge-wrap{
+  width:280px;
+  margin:0 auto 36px;
+  position:relative;
+}
+.score-hero h1{
+  font-size:clamp(26px,4.5vw,42px);
+  font-weight:800;
+  line-height:1.2;
+  margin-bottom:18px;
+  letter-spacing:-.02em;
+  max-width:680px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.score-hero p{
+  font-size:18px;
+  color:var(--muted);
+  line-height:1.7;
+  max-width:620px;
+  margin:0 auto 24px;
+}
+.res-bullets{list-style:none;display:inline-block;text-align:left}
+.res-bullets li{
+  font-size:15px;
+  color:var(--muted);
+  padding:6px 0 6px 28px;
+  position:relative;
+  line-height:1.5;
+}
+.res-bullets li::before{
+  content:'';
+  position:absolute;
+  left:0;top:9px;
+  width:16px;height:16px;
+  border-radius:50%;
+  border:1.5px solid var(--orange);
+  background:rgba(245,166,35,.12);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 5l2.5 2.5L8 3' stroke='%23f5a623' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:10px;
+}
+
+/* Section label */
+.section-label{
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--orange);
+  margin-bottom:10px;
+}
+.section-title{
+  font-size:clamp(22px,3vw,30px);
+  font-weight:800;
+  margin-bottom:32px;
+  letter-spacing:-.01em;
+}
+
+/* Category score cards — full width stacked */
+.cat-cards{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  margin-bottom:72px;
+}
+.cat-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:32px 36px;
+  transition:border-color .3s;
+}
+.cat-card:hover{border-color:var(--border-orange)}
+.cat-card-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:10px;
+  gap:16px;
+}
+.cat-card-name{
+  font-size:18px;
+  font-weight:800;
+  letter-spacing:-.01em;
+}
+.cat-card-pct{
+  font-size:22px;
+  font-weight:900;
+  flex-shrink:0;
+}
+.cat-card-tier{
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-bottom:14px;
+}
+.cat-card-desc{
+  font-size:15px;
+  color:var(--muted);
+  line-height:1.65;
+  margin-bottom:20px;
+  max-width:660px;
+}
+.cat-bar-bg{
+  height:6px;
+  background:rgba(255,255,255,0.08);
+  border-radius:3px;
+  overflow:hidden;
+}
+.cat-bar-fill{
+  height:100%;
+  border-radius:3px;
+  transition:width 1.4s cubic-bezier(.4,0,.2,1);
+  width:0%;
+}
+
+/* Biggest gap */
+.gap-section{margin-bottom:72px}
+.gap-card{
+  background:linear-gradient(135deg,#1f1800,#1a1500,#141200);
+  border:1px solid rgba(245,166,35,.35);
+  border-radius:20px;
+  padding:44px;
+  position:relative;
+  overflow:hidden;
+}
+.gap-card::before{
+  content:'';
+  position:absolute;
+  top:-80px;right:-80px;
+  width:280px;height:280px;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(245,166,35,.1),transparent 70%);
+  pointer-events:none;
+}
+.gap-score-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 16px;
+  background:rgba(220,50,50,.15);
+  border:1px solid rgba(220,50,50,.3);
+  border-radius:100px;
+  font-size:13px;
+  font-weight:700;
+  color:#ff7070;
+  margin-bottom:20px;
+}
+.gap-cat-name{
+  font-size:clamp(22px,3.5vw,34px);
+  font-weight:800;
+  color:var(--orange);
+  letter-spacing:-.02em;
+  margin-bottom:32px;
+  line-height:1.2;
+}
+.gap-block{margin-bottom:28px}
+.gap-block-label{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:rgba(245,166,35,.7);
+  margin-bottom:8px;
+}
+.gap-block-content{
+  font-size:16px;
+  line-height:1.65;
+  color:rgba(255,255,255,.85);
+}
+.gap-rec-text{
+  font-size:20px;
+  font-weight:700;
+  color:#fff;
+  line-height:1.4;
+}
+.gap-actions{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.gap-actions li{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  font-size:15px;
+  color:rgba(255,255,255,.8);
+  line-height:1.5;
+}
+.gap-actions li::before{
+  content:'→';
+  color:var(--orange);
+  font-weight:700;
+  flex-shrink:0;
+  margin-top:1px;
+}
+
+/* CTA */
+.cta-section{
+  background:linear-gradient(135deg,#1a1508,#111,#0a0a0a);
+  border:1px solid var(--border-orange);
+  border-radius:20px;
+  padding:60px 48px;
+  text-align:center;
+  margin-bottom:0;
+}
+.cta-section h2{
+  font-size:clamp(22px,3.5vw,36px);
+  font-weight:800;
+  line-height:1.2;
+  margin-bottom:14px;
+  letter-spacing:-.02em;
+}
+.cta-section p{
+  font-size:17px;
+  color:var(--muted);
+  max-width:480px;
+  margin:0 auto 36px;
+  line-height:1.65;
+}
+.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-cta-primary{
+  padding:16px 32px;
+  background:var(--orange);
+  color:#000;
+  font-family:inherit;
+  font-size:16px;
+  font-weight:700;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  transition:all .2s;
+  text-decoration:none;
+  display:inline-block;
+}
+.btn-cta-primary:hover{background:#ffb733;transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,166,35,.3)}
+.btn-cta-outline{
+  padding:16px 32px;
+  border:1px solid var(--border-orange);
+  color:var(--orange);
+  background:transparent;
+  font-family:inherit;
+  font-size:16px;
+  font-weight:600;
+  border-radius:10px;
+  cursor:pointer;
+  transition:all .2s;
+  text-decoration:none;
+  display:inline-block;
+}
+.btn-cta-outline:hover{background:rgba(245,166,35,.08)}
+
+/* Footer */
+footer{background:var(--orange);padding:32px;text-align:center}
+footer img{height:44px;display:block;margin:0 auto 8px}
+footer p{font-size:12px;color:rgba(0,0,0,.55);font-weight:500}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:700px){
   .nav{padding:14px 20px}
-  .prog-wrap,.qual-wrap,.quiz-wrap,.res-wrap{padding:36px 20px}
-  .a-grid,.cats-grid{grid-template-columns:1fr}
+  .prog-wrap{padding:12px 20px}
+  .qual-outer,.cat-intro-outer,.quiz-outer{padding:40px 20px}
+  .qual-options{grid-template-columns:1fr 1fr}
+  .a-grid{grid-template-columns:1fr}
+  .cat-card{padding:24px 20px}
+  .gap-card{padding:28px 24px}
+  .cta-section{padding:40px 24px}
   .cta-btns{flex-direction:column}
-  .btn-o{text-align:center}
+  .btn-cta-primary,.btn-cta-outline{text-align:center}
 }
 </style>
 </head>
@@ -102,87 +647,123 @@ footer p{font-size:12px;color:rgba(0,0,0,.55)}
 <nav class="nav"><img src="performit-logo.png" alt="Performit Live"></nav>
 
 <div class="prog-wrap" id="progWrap">
-  <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
-  <div class="prog-meta">
-    <span class="prog-cat" id="progCat">Exposure &amp; Visibility</span>
-    <span class="prog-count" id="progCount">1 of 20</span>
+  <div class="prog-header">
+    <div class="prog-meta">
+      <span class="prog-cat" id="progCat"></span>
+      <span class="prog-count" id="progCount"></span>
+    </div>
+    <div class="prog-bar"><div class="prog-fill" id="progFill"></div></div>
   </div>
 </div>
 
-<!-- QUALIFYING -->
+<!-- ── QUALIFYING ── -->
 <div class="sec active" id="secQual">
-  <div class="qual-wrap">
-    <p class="eyebrow">AI Character Readiness Scorecard</p>
-    <h1 class="qual-h">Two quick questions<br>before we begin</h1>
-    <p class="qual-sub">This helps us personalise your results to your organisation and context.</p>
-    <div class="field">
-      <label for="industry">What industry are you in?</label>
-      <select id="industry">
-        <option value="" disabled selected>Select your industry</option>
-        <option>Retail &amp; Consumer</option>
-        <option>Hospitality, Events &amp; Tourism</option>
-        <option>Financial Services</option>
-        <option>Healthcare &amp; Life Sciences</option>
-        <option>Technology</option>
-        <option>Media &amp; Entertainment</option>
-        <option>Transport &amp; Infrastructure</option>
-        <option>Public Sector</option>
-        <option>Other</option>
-      </select>
-    </div>
-    <div class="field">
-      <label for="role">What is your role?</label>
-      <select id="role">
-        <option value="" disabled selected>Select your role</option>
-        <option>C-Suite / Executive</option>
-        <option>Director / Vice President</option>
-        <option>Marketing / Communications Lead</option>
-        <option>Operations Lead</option>
-        <option>Product / Technology Lead</option>
-        <option>Manager</option>
-        <option>Consultant / Agency</option>
-        <option>Other</option>
-      </select>
-    </div>
-    <button class="btn-p" onclick="beginQuiz()">Begin Scorecard →</button>
-  </div>
-</div>
+  <div class="qual-outer">
+    <div class="qual-inner">
+      <span class="qual-eyebrow">AI Character Readiness Scorecard</span>
+      <h1 class="qual-h">Let's personalise<br>your <span>results</span></h1>
+      <p class="qual-sub">Two quick questions before we begin. This helps us tailor your readiness report to your specific context.</p>
 
-<!-- QUIZ -->
-<div class="sec" id="secQuiz">
-  <div class="quiz-wrap">
-    <div class="q-card" id="qCard">
-      <p class="q-text" id="qText"></p>
-      <div class="a-grid" id="aGrid"></div>
-    </div>
-  </div>
-</div>
-
-<!-- RESULTS -->
-<div class="sec" id="secResults">
-  <div class="res-wrap">
-    <div class="gauge-sec">
-      <div id="tierBadge" class="tier-badge"></div>
-      <svg viewBox="0 0 200 115" style="width:220px;display:block;margin:0 auto 24px">
-        <path d="M 18 100 A 82 82 0 0 1 182 100" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="14" stroke-linecap="round"/>
-        <path id="gaugeFill" d="M 18 100 A 82 82 0 0 1 182 100" fill="none" stroke="#f5a623" stroke-width="14" stroke-linecap="round" stroke-dasharray="0 258" style="transition:stroke-dasharray 1.4s cubic-bezier(.4,0,.2,1)"/>
-        <text id="gaugeNum" x="100" y="90" text-anchor="middle" font-size="36" font-weight="900" fill="#f5a623" font-family="Inter,sans-serif">0%</text>
-        <text x="100" y="108" text-anchor="middle" font-size="10" fill="rgba(255,255,255,0.4)" font-family="Inter,sans-serif">Overall Score</text>
-      </svg>
-      <h1 class="res-h" id="resH"></h1>
-      <p class="res-sum" id="resSum"></p>
-      <ul class="res-bul" id="resBul"></ul>
-    </div>
-    <p class="sec-h">Your scores across the four key areas</p>
-    <div class="cats-grid" id="catsGrid"></div>
-    <div class="gap-card" id="gapCard"></div>
-    <div class="cta-box">
-      <h3>Ready to close the gap?</h3>
-      <p>Performit Live works with organisations to build the governance, clarity, and infrastructure needed for responsible AI character deployment.</p>
-      <div class="cta-btns">
-        <a href="mailto:jon.dalzell@performitlive.com?subject=Readiness Scorecard Results" class="btn-o">Book a Strategy Call</a>
-        <a href="index.html" class="btn-o">Return to Home</a>
+      <div class="qual-question" id="qualQ1">
+        <span class="qual-question-label">What industry are you in?</span>
+        <div class="qual-options">
+          <button class="qual-opt" data-q="1" data-v="Retail &amp; Consumer">Retail &amp; Consumer</button>
+          <button class="qual-opt" data-q="1" data-v="Hospitality &amp; Events">Hospitality &amp; Events</button>
+          <button class="qual-opt" data-q="1" data-v="Financial Services">Financial Services</button>
+          <button class="qual-opt" data-q="1" data-v="Healthcare">Healthcare</button>
+          <button class="qual-opt" data-q="1" data-v="Technology">Technology</button>
+          <button class="qual-opt" data-q="1" data-v="Media &amp; Entertainment">Media &amp; Entertainment</button>
+          <button class="qual-opt" data-q="1" data-v="Transport &amp; Infrastructure">Transport &amp; Infrastructure</button>
+          <button class="qual-opt" data-q="1" data-v="Public Sector">Public Sector</button>
+          <button class="qual-opt" data-q="1" data-v="Other">Other</button>
+        </div>
       </div>
+
+      <div class="qual-question" id="qualQ2" style="display:none;margin-top:32px">
+        <span class="qual-question-label">What is your role?</span>
+        <div class="qual-options">
+          <button class="qual-opt" data-q="2" data-v="C-Suite / Executive">C-Suite / Executive</button>
+          <button class="qual-opt" data-q="2" data-v="Director / VP">Director / VP</button>
+          <button class="qual-opt" data-q="2" data-v="Marketing / Comms">Marketing / Comms</button>
+          <button class="qual-opt" data-q="2" data-v="Operations">Operations</button>
+          <button class="qual-opt" data-q="2" data-v="Product / Tech">Product / Tech</button>
+          <button class="qual-opt" data-q="2" data-v="Consultant / Agency">Consultant / Agency</button>
+          <button class="qual-opt" data-q="2" data-v="Other">Other</button>
+        </div>
+      </div>
+
+      <div style="text-align:center;margin-top:40px">
+        <button class="btn-begin" id="beginBtn" style="display:none" onclick="startQuiz()">Begin Scorecard →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── CATEGORY INTRO ── -->
+<div class="sec" id="secCatIntro">
+  <div class="cat-intro-outer">
+    <div class="cat-intro-inner">
+      <div class="cat-num-badge" id="catNumBadge">1</div>
+      <h1 class="cat-intro-name" id="catIntroName"></h1>
+      <p class="cat-intro-desc" id="catIntroDesc"></p>
+      <button class="btn-start-cat" onclick="startCategory()">Start This Section →</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── QUIZ ── -->
+<div class="sec" id="secQuiz">
+  <div class="quiz-outer">
+    <div class="quiz-inner">
+      <div class="q-card" id="qCard">
+        <p class="q-text" id="qText"></p>
+        <div class="a-grid" id="aGrid"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── RESULTS ── -->
+<div class="sec" id="secResults">
+  <div class="res-outer">
+    <div class="res-inner">
+
+      <div class="score-hero">
+        <div class="score-tier-badge" id="tierBadge"></div>
+        <div class="gauge-wrap">
+          <svg viewBox="0 0 280 160" width="280" style="display:block;margin:0 auto">
+            <path d="M 24 140 A 116 116 0 0 1 256 140" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="18" stroke-linecap="round"/>
+            <path id="gaugeFill" d="M 24 140 A 116 116 0 0 1 256 140" fill="none" stroke="#f5a623" stroke-width="18" stroke-linecap="round" stroke-dasharray="0 365" style="transition:stroke-dasharray 1.6s cubic-bezier(.4,0,.2,1);filter:drop-shadow(0 0 8px rgba(245,166,35,.5))"/>
+            <text id="gaugeNum" x="140" y="128" text-anchor="middle" font-size="52" font-weight="900" fill="#f5a623" font-family="Inter,sans-serif" letter-spacing="-2">0%</text>
+            <text x="140" y="152" text-anchor="middle" font-size="13" fill="rgba(255,255,255,0.35)" font-family="Inter,sans-serif" font-weight="600" letter-spacing="1">OVERALL SCORE</text>
+          </svg>
+        </div>
+        <h1 id="resH"></h1>
+        <p id="resSum"></p>
+        <ul class="res-bullets" id="resBul"></ul>
+      </div>
+
+      <div style="margin-bottom:72px">
+        <p class="section-label">Four Key Areas</p>
+        <p class="section-title">Your scores in detail</p>
+        <div class="cat-cards" id="catsGrid"></div>
+      </div>
+
+      <div class="gap-section">
+        <p class="section-label">Priority Action</p>
+        <p class="section-title">Your biggest gap</p>
+        <div class="gap-card" id="gapCard"></div>
+      </div>
+
+      <div class="cta-section">
+        <h2>Ready to close the gap?</h2>
+        <p>Performit Live works with organisations to build the governance, clarity, and infrastructure needed for responsible AI character deployment.</p>
+        <div class="cta-btns">
+          <a href="mailto:jon.dalzell@performitlive.com?subject=AI Readiness Scorecard — Let%27s Talk" class="btn-cta-primary">Book a Strategy Call</a>
+          <a href="index.html" class="btn-cta-outline">Return to Home</a>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
@@ -194,166 +775,220 @@ footer p{font-size:12px;color:rgba(0,0,0,.55)}
 
 <script>
 const CATS = [
-  { id:'ev', name:'Exposure & Visibility',      max:600 },
-  { id:'eb', name:'Expectations & Behaviour',   max:500 },
-  { id:'oa', name:'Ownership & Accountability', max:500 },
-  { id:'ro', name:'Response & Oversight',       max:400 }
+  { id:'ev', name:'Exposure & Visibility',      max:600,
+    desc:'This section assesses where and how prominently your AI character would operate — and the reputational risk that comes with that visibility.' },
+  { id:'eb', name:'Expectations & Behaviour',   max:500,
+    desc:'This section examines whether clear standards exist for how your AI character should behave, communicate, and know when not to respond.' },
+  { id:'oa', name:'Ownership & Accountability', max:500,
+    desc:'This section evaluates whether clear ownership, governance, and accountability structures exist for the AI character across your organisation.' },
+  { id:'ro', name:'Response & Oversight',       max:400,
+    desc:'This section assesses your organisation\'s ability to monitor, detect, and respond to issues quickly once the character is live.' }
 ];
 
 const QS = [
-  // Exposure & Visibility (30/60/90/120)
-  { c:0, t:'If an AI digital character were introduced, where would it most likely appear?',
-    a:[{t:'Internal or private use only',score:30},{t:'Limited or pilot environments',score:60},{t:'Customer-facing or public environments',score:90},{t:'Highly visible or brand-defining contexts',score:120}]},
-  { c:0, t:'How closely would such a character be associated with your organisation\'s brand?',
-    a:[{t:'Minimal — not directly linked to the brand',score:30},{t:'Some alignment — recognisable but not central',score:60},{t:'Clearly branded — part of our public identity',score:90},{t:'Core to brand — central to how we\'re known',score:120}]},
-  { c:0, t:'How sensitive would the environment be where this character appears?',
-    a:[{t:'Very low — internal or tightly controlled',score:30},{t:'Low to moderate — limited public exposure',score:60},{t:'Moderately sensitive — regular public interaction',score:90},{t:'Highly sensitive — regulated or high-stakes environment',score:120}]},
-  { c:0, t:'How frequently would people likely interact with the character?',
-    a:[{t:'Rarely — occasional internal testing only',score:30},{t:'Occasionally — limited pilot or preview',score:60},{t:'Regularly — consistent public interactions',score:90},{t:'Constantly — high-volume, always-on deployment',score:120}]},
-  { c:0, t:'How much scrutiny would the character\'s behaviour likely receive?',
-    a:[{t:'Very little — minimal visibility',score:30},{t:'Some — limited audience awareness',score:60},{t:'Significant — press or public attention possible',score:90},{t:'Intense — high-profile or regulated context',score:120}]},
-  // Expectations & Behaviour (25/50/75/100)
-  { c:1, t:'How clearly are expectations defined for how such a character should behave?',
-    a:[{t:'Not defined',score:25},{t:'Implicit or assumed',score:50},{t:'Broadly understood',score:75},{t:'Clearly defined and documented',score:100}]},
-  { c:1, t:'How important would tone and consistency be in this context?',
-    a:[{t:'Not particularly important',score:25},{t:'Somewhat important',score:50},{t:'Very important',score:75},{t:'Critical — any inconsistency creates risk',score:100}]},
-  { c:1, t:'How sensitive would conversations or interactions likely be?',
-    a:[{t:'Very low sensitivity',score:25},{t:'Moderate — some personal or brand-sensitive topics',score:50},{t:'High — emotionally or legally sensitive topics',score:75},{t:'Extremely sensitive — regulated or high-risk interactions',score:100}]},
-  { c:1, t:'How acceptable would unexpected or inappropriate responses be?',
-    a:[{t:'Acceptable — low stakes, easily corrected',score:25},{t:'Occasionally tolerable — limited exposure',score:50},{t:'Rarely acceptable — would cause concern',score:75},{t:'Never acceptable — would cause significant harm',score:100}]},
-  { c:1, t:'How important would it be for the character to know when not to respond?',
-    a:[{t:'Not critical',score:25},{t:'Somewhat important',score:50},{t:'Very important',score:75},{t:'Critical — silence or handoff must be reliable',score:100}]},
-  // Ownership & Accountability (25/50/75/100)
-  { c:2, t:'Who would ultimately be accountable for the character\'s behaviour?',
-    a:[{t:'Unclear or undecided',score:25},{t:'Informal ownership — assumed but not assigned',score:50},{t:'Shared responsibility across teams',score:75},{t:'Clearly defined owner with authority',score:100}]},
-  { c:2, t:'How aligned are stakeholders on what this character should represent?',
-    a:[{t:'Not aligned — significant disagreement exists',score:25},{t:'Partially aligned — broad direction only',score:50},{t:'Mostly aligned — some gaps remain',score:75},{t:'Fully aligned — shared understanding across all teams',score:100}]},
-  { c:2, t:'How confident are you that internal teams would agree on boundaries?',
-    a:[{t:'Not confident — boundaries are undefined',score:25},{t:'Somewhat confident — informal agreement only',score:50},{t:'Fairly confident — mostly documented',score:75},{t:'Very confident — clearly defined and agreed',score:100}]},
-  { c:2, t:'How prepared is the organisation to pause or stop the character if needed?',
-    a:[{t:'Not prepared — no process exists',score:25},{t:'Somewhat prepared — would take significant effort',score:50},{t:'Mostly prepared — process exists but untested',score:75},{t:'Fully prepared — tested and ready to act immediately',score:100}]},
-  { c:2, t:'How clear is internal communication around this initiative today?',
-    a:[{t:'Very unclear — most teams are unaware',score:25},{t:'Somewhat unclear — limited awareness',score:50},{t:'Fairly clear — key teams informed',score:75},{t:'Very clear — organisation-wide alignment exists',score:100}]},
-  // Response & Oversight (20/40/60/80)
-  { c:3, t:'If the character caused concern publicly, how quickly could action be taken?',
-    a:[{t:'Not sure — no process in place',score:20},{t:'Within days — would need to escalate first',score:40},{t:'Within hours — response team exists',score:60},{t:'Immediately — real-time monitoring and response ready',score:80}]},
-  { c:3, t:'How comfortable are teams discussing potential risks openly today?',
-    a:[{t:'Not comfortable — risks are avoided or minimised',score:20},{t:'Somewhat comfortable — surface-level only',score:40},{t:'Fairly comfortable — open in most discussions',score:60},{t:'Very comfortable — active risk culture in place',score:80}]},
-  { c:3, t:'How likely is it that issues would be noticed quickly?',
-    a:[{t:'Unlikely — no monitoring in place',score:20},{t:'Somewhat likely — ad hoc awareness only',score:40},{t:'Fairly likely — some monitoring exists',score:60},{t:'Very likely — active monitoring and alerts in place',score:80}]},
-  { c:3, t:'How confident are you in responding consistently across teams?',
-    a:[{t:'Not confident — no shared protocols',score:20},{t:'Somewhat confident — informal alignment only',score:40},{t:'Fairly confident — protocols being developed',score:60},{t:'Very confident — clear, tested response protocols',score:80}]},
-  { c:3, t:'Overall, how prepared does the organisation feel for public interaction through AI?',
-    a:[{t:'Not prepared — significant gaps remain',score:20},{t:'Somewhat prepared — awareness but not readiness',score:40},{t:'Fairly prepared — good foundations in place',score:60},{t:'Fully prepared — confident and ready to deploy',score:80}]}
+  {c:0,t:'If an AI digital character were introduced, where would it most likely appear?',
+   a:[{t:'Internal or private use only',s:30},{t:'Limited or pilot environments',s:60},{t:'Customer-facing or public environments',s:90},{t:'Highly visible or brand-defining contexts',s:120}]},
+  {c:0,t:'How closely would such a character be associated with your organisation\'s brand?',
+   a:[{t:'Minimal — not directly linked to the brand',s:30},{t:'Some alignment — recognisable but not central',s:60},{t:'Clearly branded — part of our public identity',s:90},{t:'Core to brand — central to how we\'re known',s:120}]},
+  {c:0,t:'How sensitive would the environment be where this character appears?',
+   a:[{t:'Very low — internal or tightly controlled',s:30},{t:'Low to moderate — limited public exposure',s:60},{t:'Moderately sensitive — regular public interaction',s:90},{t:'Highly sensitive — regulated or high-stakes environment',s:120}]},
+  {c:0,t:'How frequently would people likely interact with the character?',
+   a:[{t:'Rarely — occasional internal testing only',s:30},{t:'Occasionally — limited pilot or preview',s:60},{t:'Regularly — consistent public interactions',s:90},{t:'Constantly — high-volume, always-on deployment',s:120}]},
+  {c:0,t:'How much scrutiny would the character\'s behaviour likely receive?',
+   a:[{t:'Very little — minimal visibility',s:30},{t:'Some — limited audience awareness',s:60},{t:'Significant — press or public attention possible',s:90},{t:'Intense — high-profile or regulated context',s:120}]},
+  {c:1,t:'How clearly are expectations defined for how such a character should behave?',
+   a:[{t:'Not defined',s:25},{t:'Implicit or assumed',s:50},{t:'Broadly understood',s:75},{t:'Clearly defined and documented',s:100}]},
+  {c:1,t:'How important would tone and consistency be in this context?',
+   a:[{t:'Not particularly important',s:25},{t:'Somewhat important',s:50},{t:'Very important',s:75},{t:'Critical — any inconsistency creates risk',s:100}]},
+  {c:1,t:'How sensitive would conversations or interactions likely be?',
+   a:[{t:'Very low sensitivity',s:25},{t:'Moderate — some personal or brand-sensitive topics',s:50},{t:'High — emotionally or legally sensitive topics',s:75},{t:'Extremely sensitive — regulated or high-risk interactions',s:100}]},
+  {c:1,t:'How acceptable would unexpected or inappropriate responses be?',
+   a:[{t:'Acceptable — low stakes, easily corrected',s:25},{t:'Occasionally tolerable — limited exposure',s:50},{t:'Rarely acceptable — would cause concern',s:75},{t:'Never acceptable — would cause significant harm',s:100}]},
+  {c:1,t:'How important would it be for the character to know when not to respond?',
+   a:[{t:'Not critical',s:25},{t:'Somewhat important',s:50},{t:'Very important',s:75},{t:'Critical — silence or handoff must be reliable',s:100}]},
+  {c:2,t:'Who would ultimately be accountable for the character\'s behaviour?',
+   a:[{t:'Unclear or undecided',s:25},{t:'Informal ownership — assumed but not assigned',s:50},{t:'Shared responsibility across teams',s:75},{t:'Clearly defined owner with authority',s:100}]},
+  {c:2,t:'How aligned are stakeholders on what this character should represent?',
+   a:[{t:'Not aligned — significant disagreement exists',s:25},{t:'Partially aligned — broad direction only',s:50},{t:'Mostly aligned — some gaps remain',s:75},{t:'Fully aligned — shared understanding across all teams',s:100}]},
+  {c:2,t:'How confident are you that internal teams would agree on boundaries?',
+   a:[{t:'Not confident — boundaries are undefined',s:25},{t:'Somewhat confident — informal agreement only',s:50},{t:'Fairly confident — mostly documented',s:75},{t:'Very confident — clearly defined and agreed',s:100}]},
+  {c:2,t:'How prepared is the organisation to pause or stop the character if needed?',
+   a:[{t:'Not prepared — no process exists',s:25},{t:'Somewhat prepared — would take significant effort',s:50},{t:'Mostly prepared — process exists but untested',s:75},{t:'Fully prepared — tested and ready to act immediately',s:100}]},
+  {c:2,t:'How clear is internal communication around this initiative today?',
+   a:[{t:'Very unclear — most teams are unaware',s:25},{t:'Somewhat unclear — limited awareness',s:50},{t:'Fairly clear — key teams informed',s:75},{t:'Very clear — organisation-wide alignment exists',s:100}]},
+  {c:3,t:'If the character caused concern publicly, how quickly could action be taken?',
+   a:[{t:'Not sure — no process in place',s:20},{t:'Within days — would need to escalate first',s:40},{t:'Within hours — response team exists',s:60},{t:'Immediately — real-time monitoring and response ready',s:80}]},
+  {c:3,t:'How comfortable are teams discussing potential risks openly today?',
+   a:[{t:'Not comfortable — risks are avoided or minimised',s:20},{t:'Somewhat comfortable — surface-level only',s:40},{t:'Fairly comfortable — open in most discussions',s:60},{t:'Very comfortable — active risk culture in place',s:80}]},
+  {c:3,t:'How likely is it that issues would be noticed quickly?',
+   a:[{t:'Unlikely — no monitoring in place',s:20},{t:'Somewhat likely — ad hoc awareness only',s:40},{t:'Fairly likely — some monitoring exists',s:60},{t:'Very likely — active monitoring and alerts in place',s:80}]},
+  {c:3,t:'How confident are you in responding consistently across teams?',
+   a:[{t:'Not confident — no shared protocols',s:20},{t:'Somewhat confident — informal alignment only',s:40},{t:'Fairly confident — protocols being developed',s:60},{t:'Very confident — clear, tested response protocols',s:80}]},
+  {c:3,t:'Overall, how prepared does the organisation feel for public interaction through AI?',
+   a:[{t:'Not prepared — significant gaps remain',s:20},{t:'Somewhat prepared — awareness but not readiness',s:40},{t:'Fairly prepared — good foundations in place',s:60},{t:'Fully prepared — confident and ready to deploy',s:80}]}
 ];
 
-const TIERS = [
-  { label:'Not Ready', cls:'t-nr', min:0, max:39,
-    h:'Your Organisation Is Not Yet Ready for an AI Digital Character',
-    s:'Your results indicate that several foundational conditions required for responsible AI character deployment are not yet in place. Key areas such as behavioural expectations, ownership, or response readiness may still be unclear or misaligned across teams.',
-    b:['Governance or ownership decisions have not yet been clearly defined','Behavioural expectations for the character may still be informal or assumed','Processes to monitor and respond to issues may not yet exist']},
-  { label:'Emerging Readiness', cls:'t-em', min:40, max:74,
-    h:'Your Organisation Is Building Towards AI Character Readiness',
-    s:'Your results show developing foundations across several key areas. While some important structures are taking shape, meaningful gaps remain before responsible deployment at scale. With focused effort on your weakest areas, full readiness is achievable.',
-    b:['Some governance and ownership structures are forming but need formalising','Behavioural expectations are partially defined but require clearer documentation','Response protocols are developing but need testing before deployment']},
-  { label:'Operating at Scale', cls:'t-op', min:75, max:100,
-    h:'Your Organisation Shows Strong AI Character Readiness',
-    s:'Your results indicate strong foundations across all key readiness areas. You have the governance, behavioural clarity, ownership structures, and response infrastructure in place to deploy an AI digital character responsibly and effectively.',
-    b:['Clear ownership and accountability structures are established','Behavioural expectations are well-defined and understood across teams','Response and oversight protocols are tested and operational']}
+const TIERS=[
+  {label:'Not Ready',cls:'t-nr',min:0,max:39,
+   h:'Your Organisation Is Not Yet Ready for an AI Digital Character',
+   s:'Your results indicate that several foundational conditions required for responsible AI character deployment are not yet in place. Key areas such as behavioural expectations, ownership, or response readiness may still be unclear or misaligned across teams.',
+   b:['Governance or ownership decisions have not yet been clearly defined','Behavioural expectations for the character may still be informal or assumed','Processes to monitor and respond to issues may not yet exist']},
+  {label:'Emerging Readiness',cls:'t-em',min:40,max:74,
+   h:'Your Organisation Is Building Towards AI Character Readiness',
+   s:'Your results show developing foundations across several key areas. While some important structures are taking shape, meaningful gaps remain before responsible deployment at scale. With focused effort on your weakest areas, full readiness is achievable.',
+   b:['Some governance and ownership structures are forming but need formalising','Behavioural expectations are partially defined but require clearer documentation','Response protocols are developing but need testing before deployment']},
+  {label:'Operating at Scale',cls:'t-op',min:75,max:100,
+   h:'Your Organisation Shows Strong AI Character Readiness',
+   s:'Your results indicate strong foundations across all key readiness areas. You have the governance, behavioural clarity, ownership structures, and response infrastructure in place to deploy an AI digital character responsibly and effectively.',
+   b:['Clear ownership and accountability structures are established','Behavioural expectations are well-defined and understood across teams','Response and oversight protocols are tested and operational']}
 ];
 
-const CAT_DESC = {
-  ev:['Your organisation\'s current deployment context involves limited public exposure — risks are lower but so is the strategic visibility of the character.','Your organisation has growing public-facing exposure. Careful positioning around brand, tone, and context will help manage reputational risk.','Your organisation operates in high-visibility environments — ideal for a character deployment, but requiring robust governance to match the exposure level.'],
-  eb:['Expectations around how the AI character should behave may still be informal or undefined. Teams may not yet share a consistent understanding of tone, boundaries, or interaction standards.','Some expectations are in place but need formalising. Consistency of tone and behaviour standards would benefit from clearer documentation.','Clear, documented behaviour expectations are in place. Teams share a consistent understanding of tone, boundaries, and interaction standards.'],
-  oa:['Responsibility for the AI character may still be unclear or distributed informally. Without clear ownership, decision-making and accountability can become difficult if issues arise.','Ownership is emerging but accountability structures need strengthening. Clearer definition of decision authority and escalation paths would reduce risk.','Clear ownership and accountability structures are in place. Decision-making authority and escalation paths are well-defined across the organisation.'],
+const CAT_DESC={
+  ev:['Your organisation\'s current deployment context involves limited public exposure — risks are lower, but so is the strategic visibility of the character.','Your organisation has growing public-facing exposure. Careful positioning around brand, tone, and oversight will help manage reputational risk.','Your organisation operates in high-visibility environments — ideal for a character deployment, requiring robust governance to match the exposure level.'],
+  eb:['Expectations around how the AI character should behave may still be informal or undefined. Teams may not yet share a consistent understanding of tone, boundaries, or interaction standards.','Some expectations are in place but need formalising. Greater consistency of tone and behaviour standards would benefit from clearer documentation.','Clear, documented behaviour expectations are in place. Teams share a consistent understanding of tone, boundaries, and interaction standards.'],
+  oa:['Responsibility for the AI character may still be unclear or distributed informally. Without clear ownership, decision-making and accountability become difficult if issues arise.','Ownership is emerging but accountability structures need strengthening. Clearer definition of decision authority and escalation paths would reduce risk.','Clear ownership and accountability structures are in place. Decision-making authority and escalation paths are well-defined across the organisation.'],
   ro:['The organisation may not yet have clear processes for monitoring or responding to issues once the AI character is live. This is a critical gap before any public deployment.','Some response capability exists but monitoring and oversight processes need development and testing before live deployment at scale.','Strong monitoring and response protocols are in place. The organisation can detect and address issues quickly once the character is live.']
 };
 
-const GAP = {
-  ev:{ rec:'Map your deployment environment and assess brand risk before going live.', why:'Without understanding where and how the character will appear, it\'s impossible to prepare appropriate governance, tone, and oversight measures tailored to the actual risk level.', acts:['Define where the character will appear and who will see it','Assess reputational risk across each deployment context','Align brand guidelines to character interactions']},
-  eb:{ rec:'Define clear behavioural standards and document them across teams.', why:'Without documented expectations, different teams will interpret the character\'s role differently — creating inconsistency and reputational risk once the character is live.', acts:['Create a behaviour brief for the AI character','Define tone, style, and boundary guidelines','Ensure all teams share a consistent understanding']},
-  oa:{ rec:'Establish clear ownership and governance for the AI character.', why:'Without clear accountability, organisations struggle to make decisions quickly when problems occur. Ownership ensures someone is responsible for behaviour, governance, and escalation decisions at all times.', acts:['Assign a clear internal owner for the AI character','Define escalation paths if issues occur','Align stakeholders on decision authority']},
-  ro:{ rec:'Build monitoring and response protocols before deployment.', why:'Without real-time oversight, issues can escalate before anyone notices. A tested response protocol is essential for any public-facing AI character deployment.', acts:['Establish real-time monitoring for character interactions','Create and document an incident response protocol','Test your response capability before going live']}
+const GAP={
+  ev:{rec:'Map your deployment environment and assess brand risk before going live.',why:'Without understanding where and how the character will appear, it\'s impossible to prepare appropriate governance, tone, and oversight measures tailored to the actual risk level.',acts:['Define where the character will appear and who will see it','Assess reputational risk across each deployment context','Align brand guidelines to character interactions']},
+  eb:{rec:'Define clear behavioural standards and document them across teams.',why:'Without documented expectations, different teams will interpret the character\'s role differently — creating inconsistency and reputational risk once the character is live.',acts:['Create a behaviour brief for the AI character','Define tone, style, and boundary guidelines','Ensure all teams share a consistent understanding']},
+  oa:{rec:'Establish clear ownership and governance for the AI character.',why:'Without clear accountability, organisations struggle to make decisions quickly when problems occur. Ownership ensures someone is responsible for behaviour, governance, and escalation decisions at all times.',acts:['Assign a clear internal owner for the AI character','Define escalation paths if issues occur','Align stakeholders on decision authority']},
+  ro:{rec:'Build monitoring and response protocols before deployment.',why:'Without real-time oversight, issues can escalate before anyone notices. A tested response protocol is essential for any public-facing AI character deployment.',acts:['Establish real-time monitoring for character interactions','Create and document an incident response protocol','Test your response capability before going live']}
 };
 
-// STATE
-let qi = 0, scores = [0,0,0,0];
-const urlP = new URLSearchParams(window.location.search);
-const userName = urlP.get('name') || '';
+// ── STATE ──
+let qi=0, scores=[0,0,0,0], catIntroShown=[-1];
+const LETTERS=['A','B','C','D'];
 
-function show(id){ document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active')); document.getElementById(id).classList.add('active'); }
+// Qualifying
+document.querySelectorAll('.qual-opt').forEach(btn=>{
+  btn.addEventListener('click',function(){
+    const q=this.dataset.q;
+    document.querySelectorAll(`.qual-opt[data-q="${q}"]`).forEach(b=>b.classList.remove('selected'));
+    this.classList.add('selected');
+    if(q==='1'){
+      document.getElementById('qualQ2').style.display='block';
+    } else {
+      document.getElementById('beginBtn').style.display='inline-block';
+    }
+  });
+});
 
-function beginQuiz(){
-  const ind = document.getElementById('industry').value;
-  const rol = document.getElementById('role').value;
-  if(!ind||!rol){ alert('Please select both your industry and role to continue.'); return; }
+function show(id){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
+
+function startQuiz(){
   document.getElementById('progWrap').style.display='block';
-  show('secQuiz'); renderQ();
+  showCatIntro(0);
+}
+
+function showCatIntro(catIdx){
+  const cat=CATS[catIdx];
+  document.getElementById('catNumBadge').textContent=catIdx+1;
+  document.getElementById('catIntroName').textContent=cat.name;
+  document.getElementById('catIntroDesc').textContent=cat.desc;
+  show('secCatIntro');
+}
+
+function startCategory(){
+  show('secQuiz');
+  renderQ();
 }
 
 function renderQ(){
-  const q = QS[qi];
-  document.getElementById('progFill').style.width = (qi/QS.length*100)+'%';
-  document.getElementById('progCat').textContent = CATS[q.c].name;
-  document.getElementById('progCount').textContent = (qi+1)+' of '+QS.length;
-  const card = document.getElementById('qCard');
-  card.classList.remove('q-card'); void card.offsetWidth; card.classList.add('q-card');
-  document.getElementById('qText').textContent = q.t;
-  const grid = document.getElementById('aGrid'); grid.innerHTML='';
-  q.a.forEach(opt=>{
-    const b=document.createElement('button'); b.className='a-btn'; b.textContent=opt.t;
-    b.onclick=()=>pick(opt.score, q.c, b);
+  const q=QS[qi];
+  const qInCat=qi - CATS.slice(0,q.c).reduce((a,_,i)=>a+QS.filter(x=>x.c===i).length,0);
+  const totalInCat=QS.filter(x=>x.c===q.c).length;
+  document.getElementById('progFill').style.width=(qi/QS.length*100)+'%';
+  document.getElementById('progCat').textContent=CATS[q.c].name+' · '+(qInCat+1)+' of '+totalInCat;
+  document.getElementById('progCount').textContent='Question '+(qi+1)+' of '+QS.length;
+  const card=document.getElementById('qCard');
+  card.classList.remove('q-card');void card.offsetWidth;card.classList.add('q-card');
+  document.getElementById('qText').textContent=q.t;
+  const grid=document.getElementById('aGrid');grid.innerHTML='';
+  q.a.forEach((opt,i)=>{
+    const b=document.createElement('button');b.className='a-btn';
+    b.innerHTML=`<span class="a-letter">${LETTERS[i]}</span><span class="a-text">${opt.t}</span>`;
+    b.onclick=()=>pick(opt.s,q.c,b,q);
     grid.appendChild(b);
   });
 }
 
-function pick(score, ci, btn){
+function pick(score,ci,btn,q){
   document.querySelectorAll('.a-btn').forEach(b=>b.classList.remove('selected'));
   btn.classList.add('selected');
   scores[ci]+=score;
-  setTimeout(()=>{ qi++; qi<QS.length ? renderQ() : showResults(); }, 400);
+  setTimeout(()=>{
+    qi++;
+    if(qi>=QS.length){showResults();return;}
+    const nextCat=QS[qi].c;
+    if(nextCat!==q.c){
+      showCatIntro(nextCat);
+    } else {
+      renderQ();
+    }
+  },380);
 }
 
 function showResults(){
   document.getElementById('progWrap').style.display='none';
   show('secResults');
-  const total=scores.reduce((a,b)=>a+b,0), maxTotal=2000;
-  const pct=Math.round(total/maxTotal*100);
+  const total=scores.reduce((a,b)=>a+b,0);
+  const pct=Math.round(total/2000*100);
   const tier=TIERS.find(t=>pct>=t.min&&pct<=t.max)||TIERS[0];
   const badge=document.getElementById('tierBadge');
-  badge.textContent=tier.label; badge.className='tier-badge '+tier.cls;
+  badge.textContent=tier.label;badge.className='score-tier-badge '+tier.cls;
   document.getElementById('resH').textContent=tier.h;
   document.getElementById('resSum').textContent=tier.s;
   document.getElementById('resBul').innerHTML=tier.b.map(b=>`<li>${b}</li>`).join('');
   setTimeout(()=>{
-    const arc=258, filled=arc*pct/100;
+    const arc=365,filled=arc*pct/100;
     document.getElementById('gaugeFill').setAttribute('stroke-dasharray',`${filled} ${arc-filled}`);
-    animNum(document.getElementById('gaugeNum'),0,pct,1300,'%');
-  },150);
+    animNum(document.getElementById('gaugeNum'),0,pct,1500,'%');
+  },200);
+
   // Category cards
-  const grid=document.getElementById('catsGrid'); grid.innerHTML='';
+  const grid=document.getElementById('catsGrid');grid.innerHTML='';
   const ids=['ev','eb','oa','ro'];
   CATS.forEach((cat,i)=>{
     const p=Math.round(scores[i]/cat.max*100);
     const ti=p<40?0:p<75?1:2;
     const tl=p<40?'Not Ready':p<75?'Emerging':'Ready';
-    const col=p<40?'#ff6b6b':p<75?'#f5a623':'#6ddc6d';
-    const d=document.createElement('div'); d.className='cat-card';
-    d.innerHTML=`<p class="cat-name">${cat.name}</p><p class="cat-desc">${CAT_DESC[ids[i]][ti]}</p><div class="cat-bar-bg"><div class="cat-bar-fill" id="cb${i}" style="background:${col}"></div></div><div class="cat-meta"><span class="cat-pct" style="color:${col}">${p}%</span><span class="cat-tier">${tl}</span></div>`;
+    const col=p<40?'#ff7070':p<75?'#f5a623':'#5edb5e';
+    const d=document.createElement('div');d.className='cat-card';
+    d.innerHTML=`
+      <div class="cat-card-top">
+        <span class="cat-card-name">${cat.name}</span>
+        <span class="cat-card-pct" style="color:${col}">${p}%</span>
+      </div>
+      <div class="cat-card-tier" style="color:${col}">${tl}</div>
+      <p class="cat-card-desc">${CAT_DESC[ids[i]][ti]}</p>
+      <div class="cat-bar-bg"><div class="cat-bar-fill" id="cb${i}" style="background:${col}"></div></div>`;
     grid.appendChild(d);
   });
-  setTimeout(()=>{ CATS.forEach((_,i)=>{ const b=document.getElementById('cb'+i); if(b) b.style.width=Math.round(scores[i]/CATS[i].max*100)+'%'; }); },250);
+  setTimeout(()=>{CATS.forEach((_,i)=>{const b=document.getElementById('cb'+i);if(b)b.style.width=Math.round(scores[i]/CATS[i].max*100)+'%';});},300);
+
   // Biggest gap
   let li=0,lp=101;
-  CATS.forEach((c,i)=>{ const p=Math.round(scores[i]/c.max*100); if(p<lp){lp=p;li=i;} });
-  const gid=ids[li], g=GAP[gid];
-  document.getElementById('gapCard').innerHTML=`<p class="gap-ey">Your Biggest Gap</p><p class="gap-name">${CATS[li].name}</p><p class="gap-st">Primary Recommendation</p><p class="gap-rec">${g.rec}</p><p class="gap-st">Why This Matters</p><p class="gap-why">${g.why}</p><p class="gap-st">What to Address First</p><ul class="gap-list">${g.acts.map(a=>`<li>${a}</li>`).join('')}</ul>`;
+  CATS.forEach((c,i)=>{const p=Math.round(scores[i]/c.max*100);if(p<lp){lp=p;li=i;}});
+  const gid=ids[li],g=GAP[gid];
+  document.getElementById('gapCard').innerHTML=`
+    <div class="gap-score-badge">${CATS[li].name} · ${lp}%</div>
+    <p class="gap-cat-name">${g.rec}</p>
+    <div class="gap-block">
+      <p class="gap-block-label">Why This Matters</p>
+      <p class="gap-block-content">${g.why}</p>
+    </div>
+    <div class="gap-block">
+      <p class="gap-block-label">What to Address First</p>
+      <ul class="gap-actions">${g.acts.map(a=>`<li>${a}</li>`).join('')}</ul>
+    </div>`;
   window.scrollTo(0,0);
 }
 
 function animNum(el,from,to,dur,suf=''){
   const s=performance.now();
-  function u(now){ const t=Math.min((now-s)/dur,1),e=t<.5?2*t*t:-1+(4-2*t)*t; el.textContent=Math.round(from+(to-from)*e)+suf; if(t<1)requestAnimationFrame(u); }
+  function u(now){const t=Math.min((now-s)/dur,1),e=t<.5?2*t*t:-1+(4-2*t)*t;el.textContent=Math.round(from+(to-from)*e)+suf;if(t<1)requestAnimationFrame(u);}
   requestAnimationFrame(u);
 }
 </script>
