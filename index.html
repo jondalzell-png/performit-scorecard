@@ -1450,7 +1450,7 @@
       setTimeout(() => {
         submitBtn.textContent = 'Redirecting to your scorecard →';
         const params = new URLSearchParams({ name, email, company: document.getElementById('company').value.trim() });
-        window.location.href = 'https://jon-olqdgwoc.scoreapp.com?' + params.toString();
+        window.location.href = 'https://jon-olqdgwoc.scoreapp.com/questions?' + params.toString();
       }, 800);
     });
 
