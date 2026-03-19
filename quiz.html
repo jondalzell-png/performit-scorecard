@@ -260,13 +260,34 @@ body{
 }
 .btn-start-cat:hover{background:#ffb733;transform:translateY(-2px)}
 
+/* ─── BACK BUTTON ─── */
+.back-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:none;
+  border:none;
+  color:var(--muted);
+  font-family:inherit;
+  font-size:14px;
+  font-weight:600;
+  cursor:pointer;
+  padding:0;
+  margin-bottom:36px;
+  transition:color .2s;
+  letter-spacing:.02em;
+}
+.back-btn:hover{color:#fff}
+.back-btn svg{transition:transform .2s}
+.back-btn:hover svg{transform:translateX(-3px)}
+
 /* ─── QUIZ ─── */
 .quiz-outer{
   min-height:calc(100vh - 160px);
   display:flex;
-  align-items:flex-start;
+  align-items:center;
   justify-content:center;
-  padding:60px 24px 40px;
+  padding:48px 24px;
 }
 .quiz-inner{
   max-width:800px;
@@ -731,6 +752,10 @@ footer p{font-size:12px;color:rgba(0,0,0,.55);font-weight:500}
 <div class="sec" id="secQuiz">
   <div class="quiz-outer">
     <div class="quiz-inner">
+      <button class="back-btn" id="backBtn" onclick="goBack()">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Back
+      </button>
       <div class="q-card" id="qCard">
         <p class="q-text" id="qText"></p>
         <div class="a-grid" id="aGrid"></div>
@@ -874,7 +899,8 @@ const GAP={
 };
 
 // ── STATE ──
-let qi=0, scores=[0,0,0,0], catIntroShown=[-1];
+let qi=0, scores=[0,0,0,0];
+let answerHistory=[]; // {qi, catIdx, score}
 const LETTERS=['A','B','C','D'];
 
 function show(id){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -931,6 +957,7 @@ function pick(score,ci,btn,q){
   document.querySelectorAll('.a-btn').forEach(b=>b.classList.remove('selected'));
   btn.classList.add('selected');
   scores[ci]+=score;
+  answerHistory.push({qi, catIdx:ci, score});
   setTimeout(()=>{
     qi++;
     if(qi>=QS.length){showResults();return;}
@@ -941,6 +968,21 @@ function pick(score,ci,btn,q){
       renderQ();
     }
   },380);
+}
+
+function goBack(){
+  if(answerHistory.length===0){
+    // Back to qualifying
+    document.getElementById('progWrap').style.display='none';
+    show('secQual');
+    return;
+  }
+  // Undo last answer
+  const last=answerHistory.pop();
+  scores[last.catIdx]-=last.score;
+  qi=last.qi;
+  show('secQuiz');
+  renderQ();
 }
 
 function showResults(){
