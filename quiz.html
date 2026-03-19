@@ -626,25 +626,61 @@ body.results-active{overflow:auto;height:auto}
   background:linear-gradient(135deg,#1a1508,#111,#0a0a0a);
   border:1px solid var(--border-orange);
   border-radius:20px;
-  padding:60px 48px;
-  text-align:center;
+  overflow:hidden;
   margin-bottom:0;
+  display:grid;
+  grid-template-columns:1fr 420px;
+  min-height:480px;
+}
+.cta-content{
+  padding:60px 52px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
 }
 .cta-section h2{
-  font-size:clamp(22px,3.5vw,36px);
+  font-size:clamp(24px,3.5vw,40px);
   font-weight:800;
-  line-height:1.2;
-  margin-bottom:14px;
+  line-height:1.15;
+  margin-bottom:16px;
   letter-spacing:-.02em;
 }
 .cta-section p{
   font-size:17px;
   color:var(--muted);
   max-width:480px;
-  margin:0 auto 36px;
+  margin:0 0 28px;
   line-height:1.65;
 }
-.cta-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.cta-bullets{
+  list-style:none;
+  margin-bottom:36px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+.cta-bullets li{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  font-size:15px;
+  color:rgba(255,255,255,.8);
+  line-height:1.5;
+}
+.cta-bullets li::before{
+  content:'';
+  width:18px;height:18px;
+  border-radius:50%;
+  border:1.5px solid var(--orange);
+  background:rgba(245,166,35,.12);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 5l2.5 2.5L8 3' stroke='%23f5a623' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:10px;
+  flex-shrink:0;
+  margin-top:2px;
+}
+.cta-btns{display:flex;gap:14px;flex-wrap:wrap}
 .btn-cta-primary{
   padding:16px 32px;
   background:var(--orange);
@@ -675,6 +711,17 @@ body.results-active{overflow:auto;height:auto}
   display:inline-block;
 }
 .btn-cta-outline:hover{background:rgba(245,166,35,.08)}
+.cta-image{
+  position:relative;
+  overflow:hidden;
+}
+.cta-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  object-position:center top;
+  display:block;
+}
 
 /* Footer */
 footer{background:var(--orange);padding:32px;text-align:center}
@@ -686,11 +733,12 @@ footer p{font-size:12px;color:rgba(0,0,0,.55);font-weight:500}
   .nav{padding:14px 20px}
   .prog-wrap{padding:12px 20px}
   .qual-outer,.quiz-outer,.lead-outer{padding:40px 20px}
-  .qual-options{grid-template-columns:1fr 1fr}
   .a-grid{grid-template-columns:1fr}
   .cat-card{padding:24px 20px}
   .gap-card{padding:28px 24px}
-  .cta-section{padding:40px 24px}
+  .cta-section{grid-template-columns:1fr}
+  .cta-image{display:none}
+  .cta-content{padding:40px 24px}
   .cta-btns{flex-direction:column}
   .btn-cta-primary,.btn-cta-outline{text-align:center}
 }
@@ -844,11 +892,21 @@ footer p{font-size:12px;color:rgba(0,0,0,.55);font-weight:500}
       </div>
 
       <div class="cta-section">
-        <h2>Ready to close the gap?</h2>
-        <p>Performit Live works with organisations to build the governance, clarity, and infrastructure needed for responsible AI character deployment.</p>
-        <div class="cta-btns">
-          <a href="mailto:jon.dalzell@performitlive.com?subject=AI Readiness Scorecard — Let%27s Talk" class="btn-cta-primary">Book a Strategy Call</a>
-          <a href="index.html" class="btn-cta-outline">Return to Home</a>
+        <div class="cta-content">
+          <h2>Ready to close the gap?</h2>
+          <p>Performit Live works with organisations to build the governance, clarity, and infrastructure needed to deploy an AI character responsibly and at scale.</p>
+          <ul class="cta-bullets">
+            <li>Get practical steps to close your biggest readiness gaps</li>
+            <li>Align your teams on governance, ownership, and behaviour standards</li>
+            <li>Build the confidence to deploy responsibly — and be seen doing it</li>
+          </ul>
+          <div class="cta-btns">
+            <a href="mailto:jon.dalzell@performitlive.com?subject=AI Readiness Scorecard — Let%27s Talk" class="btn-cta-primary">Book a Strategy Call</a>
+            <a href="index.html" class="btn-cta-outline">Return to Home</a>
+          </div>
+        </div>
+        <div class="cta-image">
+          <img src="hero-kiosk.png" alt="AI Character in action">
         </div>
       </div>
 
