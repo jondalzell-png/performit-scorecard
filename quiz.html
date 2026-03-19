@@ -415,63 +415,81 @@ body.results-active{overflow:auto;height:auto}
 .a-text{flex:1}
 
 /* ─── RESULTS ─── */
-.res-outer{padding:0 24px 80px}
-.res-inner{max-width:900px;margin:0 auto}
+.res-outer{padding:0 0 80px}
+.res-inner{max-width:960px;margin:0 auto;padding:0 24px}
 
 /* Hero score block */
 .score-hero{
   text-align:center;
-  padding:80px 24px 60px;
-  border-bottom:1px solid var(--border);
-  margin-bottom:72px;
+  padding:100px 24px 80px;
+  margin-bottom:80px;
+  position:relative;
+  overflow:hidden;
+}
+.score-hero::before{
+  content:'';
+  position:absolute;
+  top:-60px;left:50%;
+  transform:translateX(-50%);
+  width:900px;height:600px;
+  background:radial-gradient(ellipse at 50% 30%,rgba(245,166,35,.1) 0%,transparent 60%);
+  pointer-events:none;
+}
+.score-hero::after{
+  content:'';
+  position:absolute;
+  bottom:0;left:0;right:0;
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(245,166,35,.2) 30%,rgba(245,166,35,.2) 70%,transparent);
 }
 .score-tier-badge{
   display:inline-block;
-  padding:7px 20px;
+  padding:9px 24px;
   border-radius:100px;
-  font-size:12px;
+  font-size:13px;
   font-weight:700;
-  letter-spacing:.1em;
+  letter-spacing:.12em;
   text-transform:uppercase;
-  margin-bottom:32px;
+  margin-bottom:40px;
 }
-.t-nr{background:rgba(220,50,50,.12);color:#ff7070;border:1px solid rgba(220,50,50,.3)}
-.t-em{background:rgba(245,166,35,.12);color:var(--orange);border:1px solid rgba(245,166,35,.3)}
-.t-op{background:rgba(80,200,80,.12);color:#5edb5e;border:1px solid rgba(80,200,80,.3)}
+.t-nr{background:rgba(220,50,50,.15);color:#ff7070;border:1px solid rgba(220,50,50,.4)}
+.t-em{background:rgba(245,166,35,.15);color:var(--orange);border:1px solid rgba(245,166,35,.4)}
+.t-op{background:rgba(80,200,80,.15);color:#5edb5e;border:1px solid rgba(80,200,80,.4)}
 .gauge-wrap{
-  width:280px;
-  margin:0 auto 36px;
+  width:360px;
+  margin:0 auto 48px;
   position:relative;
+  filter:drop-shadow(0 0 40px rgba(245,166,35,.15));
 }
 .score-hero h1{
-  font-size:clamp(26px,4.5vw,42px);
+  font-size:clamp(28px,4vw,48px);
   font-weight:800;
-  line-height:1.2;
-  margin-bottom:18px;
-  letter-spacing:-.02em;
-  max-width:680px;
+  line-height:1.15;
+  margin-bottom:20px;
+  letter-spacing:-.025em;
+  max-width:760px;
   margin-left:auto;
   margin-right:auto;
 }
 .score-hero p{
   font-size:18px;
   color:var(--muted);
-  line-height:1.7;
-  max-width:620px;
-  margin:0 auto 24px;
+  line-height:1.75;
+  max-width:600px;
+  margin:0 auto 28px;
 }
 .res-bullets{list-style:none;display:inline-block;text-align:left}
 .res-bullets li{
-  font-size:15px;
-  color:var(--muted);
-  padding:6px 0 6px 28px;
+  font-size:16px;
+  color:rgba(255,255,255,.7);
+  padding:7px 0 7px 30px;
   position:relative;
   line-height:1.5;
 }
 .res-bullets li::before{
   content:'';
   position:absolute;
-  left:0;top:9px;
+  left:0;top:10px;
   width:16px;height:16px;
   border-radius:50%;
   border:1.5px solid var(--orange);
@@ -885,11 +903,11 @@ footer p{font-size:12px;color:rgba(0,0,0,.55);font-weight:500}
       <div class="score-hero">
         <div class="score-tier-badge" id="tierBadge"></div>
         <div class="gauge-wrap">
-          <svg viewBox="0 0 280 160" width="280" style="display:block;margin:0 auto">
-            <path d="M 24 140 A 116 116 0 0 1 256 140" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="18" stroke-linecap="round"/>
-            <path id="gaugeFill" d="M 24 140 A 116 116 0 0 1 256 140" fill="none" stroke="#f5a623" stroke-width="18" stroke-linecap="round" stroke-dasharray="0 365" style="transition:stroke-dasharray 1.6s cubic-bezier(.4,0,.2,1);filter:drop-shadow(0 0 8px rgba(245,166,35,.5))"/>
-            <text id="gaugeNum" x="140" y="128" text-anchor="middle" font-size="52" font-weight="900" fill="#f5a623" font-family="Inter,sans-serif" letter-spacing="-2">0%</text>
-            <text x="140" y="152" text-anchor="middle" font-size="13" fill="rgba(255,255,255,0.35)" font-family="Inter,sans-serif" font-weight="600" letter-spacing="1">OVERALL SCORE</text>
+          <svg viewBox="0 0 360 210" width="360" style="display:block;margin:0 auto">
+            <path d="M 30 180 A 150 150 0 0 1 330 180" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="22" stroke-linecap="round"/>
+            <path id="gaugeFill" d="M 30 180 A 150 150 0 0 1 330 180" fill="none" stroke="#f5a623" stroke-width="22" stroke-linecap="round" stroke-dasharray="0 472" style="transition:stroke-dasharray 1.8s cubic-bezier(.4,0,.2,1);filter:drop-shadow(0 0 12px rgba(245,166,35,.6))"/>
+            <text id="gaugeNum" x="180" y="162" text-anchor="middle" font-size="72" font-weight="900" fill="#f5a623" font-family="Inter,sans-serif" letter-spacing="-3">0%</text>
+            <text x="180" y="192" text-anchor="middle" font-size="13" fill="rgba(255,255,255,0.3)" font-family="Inter,sans-serif" font-weight="700" letter-spacing="3">OVERALL SCORE</text>
           </svg>
         </div>
         <h1 id="resH"></h1>
@@ -1125,11 +1143,12 @@ function showResults(name='',email=''){
   const tier=TIERS.find(t=>pct>=t.min&&pct<=t.max)||TIERS[0];
   const badge=document.getElementById('tierBadge');
   badge.textContent=tier.label;badge.className='score-tier-badge '+tier.cls;
-  document.getElementById('resH').textContent=name ? name+', '+tier.h.charAt(0).toLowerCase()+tier.h.slice(1) : tier.h;
+  const displayName=name ? name.charAt(0).toUpperCase()+name.slice(1) : '';
+  document.getElementById('resH').textContent=displayName ? displayName+', '+tier.h.charAt(0).toLowerCase()+tier.h.slice(1) : tier.h;
   document.getElementById('resSum').textContent=tier.s;
   document.getElementById('resBul').innerHTML=tier.b.map(b=>`<li>${b}</li>`).join('');
   setTimeout(()=>{
-    const arc=365,filled=arc*pct/100;
+    const arc=472,filled=arc*pct/100;
     document.getElementById('gaugeFill').setAttribute('stroke-dasharray',`${filled} ${arc-filled}`);
     animNum(document.getElementById('gaugeNum'),0,pct,1500,'%');
   },200);
