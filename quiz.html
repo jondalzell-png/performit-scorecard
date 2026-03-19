@@ -53,7 +53,7 @@ body{
   padding:14px 40px;
   display:none;
   position:sticky;
-  top:89px;
+  top:122px;
   z-index:90;
 }
 .prog-header{
@@ -202,6 +202,75 @@ body{
 }
 .btn-begin:hover{background:#ffb733;transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,166,35,.3)}
 
+/* ─── LEAD CAPTURE ─── */
+.lead-outer{
+  min-height:calc(100vh - 122px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:60px 24px;
+}
+.lead-inner{
+  max-width:600px;
+  width:100%;
+  text-align:center;
+}
+.lead-eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:rgba(245,166,35,.1);
+  border:1px solid rgba(245,166,35,.25);
+  color:var(--orange);
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  padding:8px 20px;
+  border-radius:100px;
+  margin-bottom:28px;
+}
+.lead-h{
+  font-size:clamp(30px,5vw,52px);
+  font-weight:800;
+  line-height:1.1;
+  margin-bottom:16px;
+  letter-spacing:-.03em;
+}
+.lead-h span{color:var(--orange)}
+.lead-sub{
+  font-size:18px;
+  color:rgba(255,255,255,0.65);
+  line-height:1.6;
+  margin-bottom:44px;
+  max-width:460px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.lead-fields{display:flex;flex-direction:column;gap:16px;margin-bottom:20px;text-align:left}
+.lead-input{
+  width:100%;
+  padding:18px 20px;
+  background:var(--surface);
+  border:1px solid rgba(255,255,255,0.15);
+  border-radius:12px;
+  color:#fff;
+  font-family:inherit;
+  font-size:17px;
+  font-weight:500;
+  transition:border-color .2s;
+  outline:none;
+}
+.lead-input::placeholder{color:rgba(255,255,255,.3)}
+.lead-input:focus{border-color:var(--orange)}
+.lead-input.error{border-color:rgba(245,166,35,.8);box-shadow:0 0 0 3px rgba(245,166,35,.15)}
+.lead-privacy{
+  font-size:13px;
+  color:rgba(255,255,255,.35);
+  text-align:center;
+  margin-bottom:32px;
+  line-height:1.5;
+}
 
 /* ─── BACK BUTTON ─── */
 .back-btn{
@@ -605,7 +674,7 @@ footer p{font-size:12px;color:rgba(0,0,0,.55);font-weight:500}
 @media(max-width:700px){
   .nav{padding:14px 20px}
   .prog-wrap{padding:12px 20px}
-  .qual-outer,.cat-intro-outer,.quiz-outer{padding:40px 20px}
+  .qual-outer,.quiz-outer,.lead-outer{padding:40px 20px}
   .qual-options{grid-template-columns:1fr 1fr}
   .a-grid{grid-template-columns:1fr}
   .cat-card{padding:24px 20px}
@@ -696,6 +765,36 @@ footer p{font-size:12px;color:rgba(0,0,0,.55);font-weight:500}
       <div class="q-card" id="qCard">
         <p class="q-text" id="qText"></p>
         <div class="a-grid" id="aGrid"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── LEAD CAPTURE ── -->
+<div class="sec" id="secLead">
+  <div class="lead-outer">
+    <div class="lead-inner">
+      <span class="lead-eyebrow">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5L7 1z" fill="#f5a623"/></svg>
+        Your results are ready
+      </span>
+      <h1 class="lead-h">Where should we<br>send your <span>report?</span></h1>
+      <p class="lead-sub">Enter your details below to unlock your full AI Character Readiness Scorecard — including your score breakdown and priority recommendations.</p>
+      <div class="lead-fields">
+        <input class="lead-input" id="leadName" type="text" placeholder="Your full name" autocomplete="name" oninput="clearLeadError('leadName','errLeadName')">
+        <div class="field-error" id="errLeadName">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#f5a623" stroke-width="1.5"/><path d="M8 5v4M8 11v.5" stroke="#f5a623" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Please enter your name to continue
+        </div>
+        <input class="lead-input" id="leadEmail" type="email" placeholder="Your work email" autocomplete="email" oninput="clearLeadError('leadEmail','errLeadEmail')">
+        <div class="field-error" id="errLeadEmail">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#f5a623" stroke-width="1.5"/><path d="M8 5v4M8 11v.5" stroke="#f5a623" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Please enter a valid email address
+        </div>
+      </div>
+      <p class="lead-privacy">Your results are kept private. We'll only use your details to send your report and follow up if relevant.</p>
+      <div style="text-align:center">
+        <button class="btn-begin" onclick="submitLead()">View My Results →</button>
       </div>
     </div>
   </div>
@@ -847,6 +946,22 @@ function clearError(selectId,errId){
   document.getElementById(errId).classList.remove('visible');
 }
 
+function clearLeadError(inputId,errId){
+  document.getElementById(inputId).classList.remove('error');
+  document.getElementById(errId).classList.remove('visible');
+}
+
+function submitLead(){
+  const name=document.getElementById('leadName').value.trim();
+  const email=document.getElementById('leadEmail').value.trim();
+  const emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  let valid=true;
+  if(!name){document.getElementById('leadName').classList.add('error');document.getElementById('errLeadName').classList.add('visible');valid=false;}
+  if(!emailOk){document.getElementById('leadEmail').classList.add('error');document.getElementById('errLeadEmail').classList.add('visible');valid=false;}
+  if(!valid){document.getElementById('leadName').scrollIntoView({behavior:'smooth',block:'center'});return;}
+  showResults(name,email);
+}
+
 function startQuiz(){
   const ind=document.getElementById('industry').value;
   const rol=document.getElementById('role').value;
@@ -886,7 +1001,12 @@ function pick(score,ci,btn,q){
   answerHistory.push({qi, catIdx:ci, score});
   setTimeout(()=>{
     qi++;
-    if(qi>=QS.length){showResults();return;}
+    if(qi>=QS.length){
+      document.getElementById('progWrap').style.display='none';
+      show('secLead');
+      window.scrollTo(0,0);
+      return;
+    }
     renderQ();
   },380);
 }
@@ -906,15 +1026,14 @@ function goBack(){
   renderQ();
 }
 
-function showResults(){
-  document.getElementById('progWrap').style.display='none';
+function showResults(name='',email=''){
   show('secResults');
   const total=scores.reduce((a,b)=>a+b,0);
   const pct=Math.round(total/2000*100);
   const tier=TIERS.find(t=>pct>=t.min&&pct<=t.max)||TIERS[0];
   const badge=document.getElementById('tierBadge');
   badge.textContent=tier.label;badge.className='score-tier-badge '+tier.cls;
-  document.getElementById('resH').textContent=tier.h;
+  document.getElementById('resH').textContent=name ? name+', '+tier.h.charAt(0).toLowerCase()+tier.h.slice(1) : tier.h;
   document.getElementById('resSum').textContent=tier.s;
   document.getElementById('resBul').innerHTML=tier.b.map(b=>`<li>${b}</li>`).join('');
   setTimeout(()=>{
