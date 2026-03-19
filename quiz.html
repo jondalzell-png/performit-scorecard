@@ -421,8 +421,8 @@ body.results-active{overflow:auto;height:auto}
 /* Hero score block */
 .score-hero{
   text-align:center;
-  padding:100px 24px 80px;
-  margin-bottom:80px;
+  padding:64px 24px 56px;
+  margin-bottom:52px;
   position:relative;
   overflow:hidden;
 }
@@ -457,7 +457,7 @@ body.results-active{overflow:auto;height:auto}
 .t-op{background:rgba(80,200,80,.15);color:#5edb5e;border:1px solid rgba(80,200,80,.4)}
 .gauge-wrap{
   width:360px;
-  margin:0 auto 48px;
+  margin:0 auto 32px;
   position:relative;
   filter:drop-shadow(0 0 40px rgba(245,166,35,.15));
 }
@@ -544,9 +544,11 @@ body.results-active{overflow:auto;height:auto}
   letter-spacing:-.01em;
 }
 .cat-card-pct{
-  font-size:22px;
+  font-size:38px;
   font-weight:900;
   flex-shrink:0;
+  letter-spacing:-.02em;
+  line-height:1;
 }
 .cat-card-tier{
   font-size:12px;
@@ -559,18 +561,18 @@ body.results-active{overflow:auto;height:auto}
   font-size:15px;
   color:var(--muted);
   line-height:1.65;
-  margin-bottom:20px;
-  max-width:660px;
+  margin-top:16px;
 }
 .cat-bar-bg{
-  height:6px;
-  background:rgba(255,255,255,0.08);
-  border-radius:3px;
+  height:8px;
+  background:rgba(255,255,255,0.07);
+  border-radius:4px;
   overflow:hidden;
+  margin-top:14px;
 }
 .cat-bar-fill{
   height:100%;
-  border-radius:3px;
+  border-radius:4px;
   transition:width 1.4s cubic-bezier(.4,0,.2,1);
   width:0%;
 }
@@ -621,8 +623,8 @@ body.results-active{overflow:auto;height:auto}
   font-weight:700;
   letter-spacing:.1em;
   text-transform:uppercase;
-  color:rgba(245,166,35,.7);
-  margin-bottom:8px;
+  color:var(--orange);
+  margin-bottom:12px;
 }
 .gap-block-content{
   font-size:16px;
@@ -734,8 +736,8 @@ body.results-active{overflow:auto;height:auto}
 .btn-cta-primary:hover{background:#ffb733;transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,166,35,.3)}
 .btn-cta-outline{
   padding:16px 32px;
-  border:1px solid var(--border-orange);
-  color:var(--orange);
+  border:1px solid rgba(255,255,255,.2);
+  color:rgba(255,255,255,.6);
   background:transparent;
   font-family:inherit;
   font-size:16px;
@@ -746,7 +748,7 @@ body.results-active{overflow:auto;height:auto}
   text-decoration:none;
   display:inline-block;
 }
-.btn-cta-outline:hover{background:rgba(245,166,35,.08)}
+.btn-cta-outline:hover{background:rgba(255,255,255,.06);color:rgba(255,255,255,.85)}
 .cta-image{
   position:relative;
   overflow:hidden;
@@ -764,42 +766,51 @@ body.results-active{overflow:auto;height:auto}
   display:inline-flex;
   align-items:center;
   gap:10px;
-  padding:14px 28px;
-  background:transparent;
-  border:1.5px solid rgba(245,166,35,.5);
-  color:var(--orange);
+  padding:16px 32px;
+  background:var(--orange);
+  border:none;
+  color:#000;
   font-family:inherit;
-  font-size:15px;
+  font-size:16px;
   font-weight:700;
   border-radius:10px;
   cursor:pointer;
   transition:all .2s;
   text-decoration:none;
-  margin-top:36px;
+  margin-top:32px;
 }
-.btn-download:hover{background:rgba(245,166,35,.08);border-color:var(--orange);transform:translateY(-1px)}
-.btn-download svg{flex-shrink:0}
+.btn-download:hover{background:#ffb733;transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,166,35,.35)}
+.btn-download svg{flex-shrink:0;color:#000}
+
+/* Entrance animations */
+@keyframes cardIn{
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.cta-microcopy{
+  font-size:13px;
+  color:var(--muted2);
+  margin-top:12px;
+  font-weight:500;
+}
 
 /* Footer */
 footer{background:var(--orange);padding:32px;text-align:center}
 footer img{height:44px;display:block;margin:0 auto 8px}
 footer p{font-size:12px;color:rgba(0,0,0,.55);font-weight:500}
 
-/* ─── PRINT STYLES ─── */
+/* ─── PRINT STYLES (fallback — report uses new window) ─── */
 @media print{
   *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
   body{background:#0a0a0a!important;color:#fff!important;overflow:auto!important}
   .nav,.prog-wrap,#secQual,#secQuiz,#secLead,footer,.cta-section,.btn-download{display:none!important}
   #secResults{display:block!important}
-  .score-hero{padding:40px 24px 32px!important}
-  .score-hero::before,.score-hero::after{display:none!important}
-  .cta-image{display:none!important}
-  .cta-section{display:none!important}
-  .gap-card::before{display:none!important}
-  .res-outer{padding:0 24px 40px!important}
   .cat-card,.gap-card{break-inside:avoid}
-  .gauge-wrap{filter:none!important}
-  a{color:var(--orange)!important}
+  .cta-image,.score-hero::before,.score-hero::after,.gap-card::before{display:none!important}
 }
 
 /* ─── RESPONSIVE ─── */
@@ -984,6 +995,7 @@ footer p{font-size:12px;color:rgba(0,0,0,.55);font-weight:500}
             <a href="mailto:jon.dalzell@performitlive.com?subject=AI Readiness Scorecard — Let%27s Talk" class="btn-cta-primary">Book a Strategy Call</a>
             <a href="index.html" class="btn-cta-outline">Return to Home</a>
           </div>
+          <p class="cta-microcopy">No commitment required · 30-minute call</p>
         </div>
         <div class="cta-image">
           <img src="hero-kiosk.png" alt="AI Character in action">
@@ -1090,6 +1102,7 @@ const GAP={
 // ── STATE ──
 let qi=0, scores=[0,0,0,0];
 let answerHistory=[]; // {qi, catIdx, score}
+let leadName='', leadEmail='', leadIndustry='', leadRole='';
 const LETTERS=['A','B','C','D'];
 
 function show(id){document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');}
@@ -1112,6 +1125,7 @@ function submitLead(){
   if(!name){document.getElementById('leadName').classList.add('error');document.getElementById('errLeadName').classList.add('visible');valid=false;}
   if(!emailOk){document.getElementById('leadEmail').classList.add('error');document.getElementById('errLeadEmail').classList.add('visible');valid=false;}
   if(!valid){document.getElementById('leadName').scrollIntoView({behavior:'smooth',block:'center'});return;}
+  leadName=name; leadEmail=email;
   showResults(name,email);
 }
 
@@ -1122,6 +1136,7 @@ function startQuiz(){
   if(!ind){document.getElementById('industry').classList.add('error');document.getElementById('errIndustry').classList.add('visible');valid=false;}
   if(!rol){document.getElementById('role').classList.add('error');document.getElementById('errRole').classList.add('visible');valid=false;}
   if(!valid){document.getElementById('errIndustry').scrollIntoView({behavior:'smooth',block:'center'});return;}
+  leadIndustry=ind; leadRole=rol;
   document.getElementById('progWrap').style.display='block';
   show('secQuiz');
   renderQ();
@@ -1203,17 +1218,19 @@ function showResults(name='',email=''){
   CATS.forEach((cat,i)=>{
     const p=Math.round(scores[i]/cat.max*100);
     const ti=p<40?0:p<75?1:2;
-    const tl=p<40?'Not Ready':p<75?'Emerging':'Ready';
+    const tl=p<40?'Not Ready':p<75?'Emerging Readiness':'Operating at Scale';
     const col=p<40?'#ff7070':p<75?'#f5a623':'#5edb5e';
     const d=document.createElement('div');d.className='cat-card';
+    const bg=p<40?'rgba(255,112,112,0.06)':p<75?'rgba(245,166,35,0.06)':'rgba(94,219,94,0.06)';
+    d.style.cssText=`border-left:3px solid ${col};background:${bg};animation:cardIn 0.5s cubic-bezier(.4,0,.2,1) ${i*110+200}ms both`;
     d.innerHTML=`
       <div class="cat-card-top">
         <span class="cat-card-name">${cat.name}</span>
         <span class="cat-card-pct" style="color:${col}">${p}%</span>
       </div>
       <div class="cat-card-tier" style="color:${col}">${tl}</div>
-      <p class="cat-card-desc">${CAT_DESC[ids[i]][ti]}</p>
-      <div class="cat-bar-bg"><div class="cat-bar-fill" id="cb${i}" style="background:${col}"></div></div>`;
+      <div class="cat-bar-bg"><div class="cat-bar-fill" id="cb${i}" style="background:${col}"></div></div>
+      <p class="cat-card-desc">${CAT_DESC[ids[i]][ti]}</p>`;
     grid.appendChild(d);
   });
   setTimeout(()=>{CATS.forEach((_,i)=>{const b=document.getElementById('cb'+i);if(b)b.style.width=Math.round(scores[i]/CATS[i].max*100)+'%';});},300);
@@ -1222,8 +1239,13 @@ function showResults(name='',email=''){
   let li=0,lp=101;
   CATS.forEach((c,i)=>{const p=Math.round(scores[i]/c.max*100);if(p<lp){lp=p;li=i;}});
   const gid=ids[li],g=GAP[gid];
-  document.getElementById('gapCard').innerHTML=`
-    <div class="gap-score-badge">${CATS[li].name} · ${lp}%</div>
+  const gc=lp<40?'#ff7070':lp<75?'#f5a623':'#5edb5e';
+  const gBg=lp<40?'rgba(255,112,112,0.15)':lp<75?'rgba(245,166,35,0.15)':'rgba(94,219,94,0.15)';
+  const gBdr=lp<40?'rgba(255,112,112,0.3)':lp<75?'rgba(245,166,35,0.3)':'rgba(94,219,94,0.3)';
+  const gapEl=document.getElementById('gapCard');
+  gapEl.style.animation='cardIn 0.6s cubic-bezier(.4,0,.2,1) 620ms both';
+  gapEl.innerHTML=`
+    <div class="gap-score-badge" style="background:${gBg};border-color:${gBdr};color:${gc}">${CATS[li].name} · ${lp}%</div>
     <p class="gap-cat-name">${g.rec}</p>
     <div class="gap-block">
       <p class="gap-block-label">Why This Matters</p>
@@ -1237,8 +1259,247 @@ function showResults(name='',email=''){
 }
 
 function downloadReport(){
-  window.print();
+  const w=window.open('','_blank');
+  if(!w){alert('Please allow pop-ups to download your report, then try again.');return;}
+  w.document.write(buildReportHTML());
+  w.document.close();
+  w.focus();
+  setTimeout(()=>w.print(),800);
 }
+
+function buildReportHTML(){
+  const total=scores.reduce((a,b)=>a+b,0);
+  const pct=Math.round(total/2000*100);
+  const tier=TIERS.find(t=>pct>=t.min&&pct<=t.max)||TIERS[0];
+  const dn=leadName?leadName.charAt(0).toUpperCase()+leadName.slice(1):'Your Organisation';
+  const date=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+  const ids=['ev','eb','oa','ro'];
+  const tc=pct<40?'#ff7070':pct<75?'#f5a623':'#5edb5e';
+  const tb=pct<40?'rgba(255,112,112,0.12)':pct<75?'rgba(245,166,35,0.12)':'rgba(94,219,94,0.12)';
+  const tbr=pct<40?'rgba(255,112,112,0.3)':pct<75?'rgba(245,166,35,0.3)':'rgba(94,219,94,0.3)';
+  const base=window.location.href.substring(0,window.location.href.lastIndexOf('/')+1);
+  const catData=CATS.map((cat,i)=>{
+    const p=Math.round(scores[i]/cat.max*100);
+    const ti=p<40?0:p<75?1:2;
+    const tl=p<40?'Not Ready':p<75?'Emerging Readiness':'Operating at Scale';
+    const col=p<40?'#ff7070':p<75?'#f5a623':'#5edb5e';
+    return {name:cat.name,pct:p,tierLabel:tl,col,desc:CAT_DESC[ids[i]][ti]};
+  });
+  let li=0,lp=101;
+  CATS.forEach((c,i)=>{const p=Math.round(scores[i]/c.max*100);if(p<lp){lp=p;li=i;}});
+  const gid=ids[li],g=GAP[gid];
+  const nextSteps=[
+    [{n:'01',t:'Map Your Deployment Context',d:'Define where and how an AI character would operate. Without this foundation, every other readiness decision lacks direction.'},
+     {n:'02',t:'Assign Clear Ownership',d:'Identify and formally appoint a named individual with authority and accountability for the AI character initiative.'},
+     {n:'03',t:'Initiate a Governance Review',d:'Brief legal, compliance, and leadership teams. Establish the regulatory and ethical conditions for responsible deployment.'},
+     {n:'04',t:'Book a Strategy Session',d:'Work with Performit Live to build a roadmap from where you are today to confident, responsible deployment.'}],
+    [{n:'01',t:'Formalise Your Behaviour Brief',d:'Turn existing ideas and assumptions into documented standards — covering tone, boundaries, escalation triggers, and brand alignment.'},
+     {n:'02',t:'Strengthen Governance Structures',d:'Formalise ownership, secure executive sponsorship, and complete any outstanding legal or compliance review.'},
+     {n:'03',t:'Build Your Oversight Framework',d:'Develop monitoring, incident response, and data governance processes before going live.'},
+     {n:'04',t:'Book a Strategy Session',d:'Performit Live can help you close the remaining gaps efficiently and prepare for a confident, responsible launch.'}],
+    [{n:'01',t:'Validate Pre-Launch Testing',d:'Run structured testing scenarios against your behaviour brief to confirm the character performs as intended across all key situations.'},
+     {n:'02',t:'Activate Internal Alignment',d:'Brief all teams who will interact with or manage the character. Ensure ownership and escalation paths are understood by everyone.'},
+     {n:'03',t:'Plan Your Launch Communications',d:'Prepare internal and external messaging that sets accurate audience expectations from day one.'},
+     {n:'04',t:'Book a Readiness Review',d:'Engage Performit Live for a pre-launch review to validate your foundations and go live with confidence.'}]
+  ];
+  const steps=nextSteps[pct<40?0:pct<75?1:2];
+  const metaLine=[leadIndustry,leadRole].filter(Boolean).join(' · ');
+
+  return `<!DOCTYPE html><html lang="en">
+<head><meta charset="UTF-8"><title>AI Character Readiness Report — ${dn}</title><base href="${base}">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+html,body{background:#0a0a0a;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Inter','Segoe UI',Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+@page{size:A4;margin:0}
+.page{width:210mm;min-height:297mm;padding:14mm 16mm;break-after:page;page-break-after:always;background:#0a0a0a;position:relative;display:flex;flex-direction:column;overflow:hidden}
+.page:last-child{break-after:auto;page-break-after:auto}
+.logo{height:30px;display:block}
+.logo-sm{height:22px;opacity:0.6;display:block}
+/* COVER */
+.cover-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:auto}
+.cover-label{font-size:10px;color:rgba(255,255,255,.3);letter-spacing:1.5px;text-transform:uppercase;font-weight:600}
+.cover-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:18mm 0 14mm}
+.cover-eyebrow{font-size:10px;color:#f5a623;letter-spacing:3px;text-transform:uppercase;font-weight:800;margin-bottom:28px}
+.cover-ring{width:172px;height:172px;border-radius:50%;border:5px solid #f5a623;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 24px;background:rgba(245,166,35,.04);box-shadow:0 0 60px rgba(245,166,35,.1)}
+.cover-pct{font-size:58px;font-weight:900;color:#f5a623;line-height:1;letter-spacing:-3px}
+.cover-pct-sub{font-size:9px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:2px;font-weight:700;margin-top:4px}
+.cover-tier{display:inline-block;padding:7px 20px;border-radius:100px;font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:24px;background:${tb};color:${tc};border:1px solid ${tbr}}
+.cover-name{font-size:34px;font-weight:800;color:#fff;letter-spacing:-1px;line-height:1.2;margin-bottom:8px}
+.cover-meta{font-size:13px;color:rgba(255,255,255,.4);font-weight:500}
+.cover-footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.07);padding-top:12px;margin-top:auto}
+.cover-footer span{font-size:10px;color:rgba(255,255,255,.28);font-weight:500;letter-spacing:.3px}
+.cover-accent{position:absolute;top:0;left:72mm;width:1px;height:100%;background:linear-gradient(to bottom,transparent,rgba(245,166,35,.12) 25%,rgba(245,166,35,.12) 75%,transparent)}
+.cover-accent2{position:absolute;top:0;right:52mm;width:1px;height:100%;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.04) 20%,rgba(255,255,255,.04) 80%,transparent)}
+/* PAGE HEADER */
+.ph{display:flex;justify-content:space-between;align-items:center;padding-bottom:10px;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:22px}
+.ph-title{font-size:19px;font-weight:700;color:#fff}
+.ph-right{display:flex;align-items:center;gap:10px}
+.ph-name{font-size:11px;color:rgba(255,255,255,.3);font-weight:600}
+/* SUMMARY */
+.sum-hero{display:flex;gap:22px;align-items:flex-start;margin-bottom:20px}
+.sum-score-block{text-align:center;flex:0 0 100px}
+.sum-pct{font-size:58px;font-weight:900;color:#f5a623;line-height:1;letter-spacing:-3px}
+.sum-pct-lbl{font-size:9px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:2px;font-weight:700;margin-top:3px}
+.sum-tier{display:inline-block;padding:5px 12px;border-radius:100px;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-top:10px;background:${tb};color:${tc};border:1px solid ${tbr}}
+.sum-content{flex:1}
+.sum-who{font-size:10px;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:1.5px;font-weight:700;margin-bottom:5px}
+.sum-hname{font-size:21px;font-weight:800;color:#fff;margin-bottom:10px;letter-spacing:-.5px;line-height:1.3}
+.sum-text{font-size:13px;color:rgba(255,255,255,.6);line-height:1.75;margin-bottom:12px}
+.sum-ul{padding-left:16px}
+.sum-ul li{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:6px;line-height:1.55}
+.divider{height:1px;background:rgba(255,255,255,.06);margin:16px 0}
+.cat-title{font-size:10px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:2px;font-weight:700;margin-bottom:12px}
+.cat-row{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.cat-row-name{font-size:12px;color:rgba(255,255,255,.65);font-weight:600;flex:0 0 186px}
+.cat-row-bar-bg{flex:1;height:5px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
+.cat-row-bar-fill{height:5px;border-radius:3px}
+.cat-row-pct{font-size:12px;font-weight:800;flex:0 0 34px;text-align:right}
+/* CATEGORY CARDS */
+.cats-grid{display:grid;grid-template-columns:1fr 1fr;gap:13px;flex:1}
+.cat-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:16px;break-inside:avoid}
+.cc-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:3px}
+.cc-name{font-size:13px;font-weight:700;color:#fff;line-height:1.3;padding-right:8px}
+.cc-pct{font-size:19px;font-weight:900;flex-shrink:0}
+.cc-status{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:1px;margin-bottom:9px}
+.cc-bar-bg{height:3px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden;margin-bottom:9px}
+.cc-bar-fill{height:3px;border-radius:2px}
+.cc-desc{font-size:11.5px;color:rgba(255,255,255,.5);line-height:1.6}
+/* GAP PAGE */
+.gap-badge{display:inline-block;background:rgba(245,166,35,.09);border:1px solid rgba(245,166,35,.22);color:#f5a623;padding:5px 14px;border-radius:100px;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:12px}
+.gap-rec{font-size:21px;font-weight:800;color:#fff;line-height:1.35;letter-spacing:-.5px;margin-bottom:18px}
+.gap-block{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-left:3px solid #f5a623;border-radius:0 8px 8px 0;padding:14px 18px;margin-bottom:10px;break-inside:avoid}
+.gap-block-lbl{font-size:10px;color:#f5a623;text-transform:uppercase;letter-spacing:2px;font-weight:800;margin-bottom:7px}
+.gap-block-text{font-size:13px;color:rgba(255,255,255,.62);line-height:1.7}
+.gap-acts{padding-left:16px}
+.gap-acts li{font-size:13px;color:rgba(255,255,255,.62);margin-bottom:8px;line-height:1.5}
+/* NEXT STEPS */
+.next-intro{font-size:13px;color:rgba(255,255,255,.5);line-height:1.75;margin-bottom:18px}
+.steps{display:flex;flex-direction:column;gap:9px;margin-bottom:18px}
+.step{display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:13px 15px;break-inside:avoid}
+.step-num{font-size:10px;font-weight:800;color:#f5a623;letter-spacing:1px;min-width:22px;margin-top:2px}
+.step-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:4px}
+.step-desc{font-size:12px;color:rgba(255,255,255,.5);line-height:1.55}
+.cta-box{background:rgba(245,166,35,.07);border:1px solid rgba(245,166,35,.2);border-radius:10px;padding:18px 22px;break-inside:avoid}
+.cta-box-title{font-size:15px;font-weight:800;color:#f5a623;margin-bottom:7px}
+.cta-box-text{font-size:13px;color:rgba(255,255,255,.6);line-height:1.6;margin-bottom:9px}
+.cta-box-contact{font-size:12px;color:rgba(255,255,255,.38);font-weight:600}
+</style>
+</head><body>
+
+<!-- PAGE 1: COVER -->
+<div class="page">
+  <div class="cover-accent"></div><div class="cover-accent2"></div>
+  <div class="cover-top">
+    <img src="performit-logo.png" class="logo" alt="Performit Live">
+    <span class="cover-label">Confidential · AI Character Readiness Scorecard</span>
+  </div>
+  <div class="cover-body">
+    <div class="cover-eyebrow">AI Character Readiness Scorecard</div>
+    <div class="cover-ring">
+      <div class="cover-pct">${pct}%</div>
+      <div class="cover-pct-sub">Overall Score</div>
+    </div>
+    <div class="cover-tier">${tier.label}</div>
+    <div class="cover-name">${dn}</div>
+    ${metaLine?`<div class="cover-meta">${metaLine}</div>`:''}
+  </div>
+  <div class="cover-footer">
+    <span>${date}</span>
+    <span>Prepared by Performit Live</span>
+    <span>performitlive.com</span>
+  </div>
+</div>
+
+<!-- PAGE 2: EXECUTIVE SUMMARY -->
+<div class="page">
+  <div class="ph">
+    <span class="ph-title">Executive Summary</span>
+    <div class="ph-right"><span class="ph-name">${dn}</span><img src="performit-logo.png" class="logo-sm" alt="Performit Live"></div>
+  </div>
+  <div class="sum-hero">
+    <div class="sum-score-block">
+      <div class="sum-pct">${pct}%</div>
+      <div class="sum-pct-lbl">Overall Score</div>
+      <div class="sum-tier">${tier.label}</div>
+    </div>
+    <div class="sum-content">
+      <div class="sum-who">Prepared for</div>
+      <div class="sum-hname">${dn}${metaLine?`<br><span style="font-size:13px;color:rgba(255,255,255,.38);font-weight:500">${metaLine}</span>`:''}</div>
+      <div class="sum-text">${tier.s}</div>
+      <ul class="sum-ul">${tier.b.map(b=>`<li>${b}</li>`).join('')}</ul>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="cat-title">Score Breakdown by Category</div>
+  ${catData.map(c=>`<div class="cat-row">
+    <span class="cat-row-name">${c.name}</span>
+    <div class="cat-row-bar-bg"><div class="cat-row-bar-fill" style="width:${c.pct}%;background:${c.col}"></div></div>
+    <span class="cat-row-pct" style="color:${c.col}">${c.pct}%</span>
+  </div>`).join('')}
+</div>
+
+<!-- PAGE 3: CATEGORY BREAKDOWN -->
+<div class="page">
+  <div class="ph">
+    <span class="ph-title">Category Breakdown</span>
+    <div class="ph-right"><span class="ph-name">${dn}</span><img src="performit-logo.png" class="logo-sm" alt="Performit Live"></div>
+  </div>
+  <div class="cats-grid">
+    ${catData.map(c=>`<div class="cat-card">
+      <div class="cc-top">
+        <span class="cc-name">${c.name}</span>
+        <span class="cc-pct" style="color:${c.col}">${c.pct}%</span>
+      </div>
+      <div class="cc-status" style="color:${c.col}">${c.tierLabel}</div>
+      <div class="cc-bar-bg"><div class="cc-bar-fill" style="width:${c.pct}%;background:${c.col}"></div></div>
+      <div class="cc-desc">${c.desc}</div>
+    </div>`).join('')}
+  </div>
+</div>
+
+<!-- PAGE 4: PRIORITY ACTION -->
+<div class="page">
+  <div class="ph">
+    <span class="ph-title">Priority Action</span>
+    <div class="ph-right"><span class="ph-name">${dn}</span><img src="performit-logo.png" class="logo-sm" alt="Performit Live"></div>
+  </div>
+  <div class="gap-badge">${CATS[li].name} · ${lp}%</div>
+  <div class="gap-rec">${g.rec}</div>
+  <div class="gap-block">
+    <div class="gap-block-lbl">Why This Matters</div>
+    <div class="gap-block-text">${g.why}</div>
+  </div>
+  <div class="gap-block">
+    <div class="gap-block-lbl">What to Address First</div>
+    <ol class="gap-acts">${g.acts.map(a=>`<li>${a}</li>`).join('')}</ol>
+  </div>
+</div>
+
+<!-- PAGE 5: NEXT STEPS -->
+<div class="page">
+  <div class="ph">
+    <span class="ph-title">Recommended Next Steps</span>
+    <div class="ph-right"><span class="ph-name">${dn}</span><img src="performit-logo.png" class="logo-sm" alt="Performit Live"></div>
+  </div>
+  <div class="next-intro">Based on your <strong style="color:#fff">${tier.label}</strong> results, here are the recommended actions for ${dn}:</div>
+  <div class="steps">
+    ${steps.map(s=>`<div class="step">
+      <span class="step-num">${s.n}</span>
+      <div>
+        <div class="step-title">${s.t}</div>
+        <div class="step-desc">${s.d}</div>
+      </div>
+    </div>`).join('')}
+  </div>
+  <div class="cta-box">
+    <div class="cta-box-title">Ready to take the next step?</div>
+    <div class="cta-box-text">Book a strategy call with the Performit Live team to turn your scorecard results into a clear, actionable roadmap for responsible AI character deployment.</div>
+    <div class="cta-box-contact">jon.dalzell@performitlive.com · performitlive.com</div>
+  </div>
+</div>
+
+</body></html>`;}
+
 
 function animNum(el,from,to,dur,suf=''){
   const s=performance.now();
