@@ -1205,10 +1205,10 @@ function showResults(name='',email=''){
   document.getElementById('resH').textContent=displayName ? displayName+', '+tier.h.charAt(0).toLowerCase()+tier.h.slice(1) : tier.h;
   document.getElementById('resSum').textContent=tier.s;
   document.getElementById('resBul').innerHTML=tier.b.map(b=>`<li>${b}</li>`).join('');
-  const gaugeCol=pct<40?'#ff7070':pct<75?'#f5a623':'#5edb5e';
-  const gaugeShadow=pct<40?'rgba(255,112,112,.6)':pct<75?'rgba(245,166,35,.6)':'rgba(94,219,94,.6)';
-  const gaugeGlow=pct<40?'rgba(255,112,112,.15)':pct<75?'rgba(245,166,35,.15)':'rgba(94,219,94,.15)';
-  const heroGlow=pct<40?'rgba(255,112,112,.1)':pct<75?'rgba(245,166,35,.1)':'rgba(94,219,94,.1)';
+  const gaugeCol=scoreCol(pct);
+  const gaugeShadow=scoreColAlpha(pct,.6);
+  const gaugeGlow=scoreColAlpha(pct,.15);
+  const heroGlow=scoreColAlpha(pct,.1);
   const gaugeFillEl=document.getElementById('gaugeFill');
   const gaugeNumEl=document.getElementById('gaugeNum');
   gaugeFillEl.setAttribute('stroke',gaugeCol);
@@ -1229,9 +1229,9 @@ function showResults(name='',email=''){
     const p=Math.round(scores[i]/cat.max*100);
     const ti=p<40?0:p<75?1:2;
     const tl=p<40?'Not Ready':p<75?'Emerging Readiness':'Operating at Scale';
-    const col=p<40?'#ff7070':p<75?'#f5a623':'#5edb5e';
+    const col=scoreCol(p);
+    const bg=scoreColAlpha(p,.06);
     const d=document.createElement('div');d.className='cat-card';
-    const bg=p<40?'rgba(255,112,112,0.06)':p<75?'rgba(245,166,35,0.06)':'rgba(94,219,94,0.06)';
     d.style.cssText=`border-left:3px solid ${col};background:${bg};animation:cardIn 0.5s cubic-bezier(.4,0,.2,1) ${i*110+200}ms both`;
     d.innerHTML=`
       <div class="cat-card-top">
@@ -1249,9 +1249,9 @@ function showResults(name='',email=''){
   let li=0,lp=101;
   CATS.forEach((c,i)=>{const p=Math.round(scores[i]/c.max*100);if(p<lp){lp=p;li=i;}});
   const gid=ids[li],g=GAP[gid];
-  const gc=lp<40?'#ff7070':lp<75?'#f5a623':'#5edb5e';
-  const gBg=lp<40?'rgba(255,112,112,0.15)':lp<75?'rgba(245,166,35,0.15)':'rgba(94,219,94,0.15)';
-  const gBdr=lp<40?'rgba(255,112,112,0.3)':lp<75?'rgba(245,166,35,0.3)':'rgba(94,219,94,0.3)';
+  const gc=scoreCol(lp);
+  const gBg=scoreColAlpha(lp,.15);
+  const gBdr=scoreColAlpha(lp,.35);
   const gapEl=document.getElementById('gapCard');
   gapEl.style.animation='cardIn 0.6s cubic-bezier(.4,0,.2,1) 620ms both';
   gapEl.innerHTML=`
@@ -1280,29 +1280,30 @@ function downloadReport(){
 function buildReportHTML(){
   const total=scores.reduce((a,b)=>a+b,0);
   const pct=Math.round(total/2000*100);
+  // reuse same colour interpolation as screen
   const tier=TIERS.find(t=>pct>=t.min&&pct<=t.max)||TIERS[0];
   const dn=leadName?leadName.charAt(0).toUpperCase()+leadName.slice(1):'Your Organisation';
   const date=new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
   const ids=['ev','eb','oa','ro'];
-  const tc=pct<40?'#ff7070':pct<75?'#f5a623':'#5edb5e';
-  const tb=pct<40?'rgba(255,112,112,0.12)':pct<75?'rgba(245,166,35,0.12)':'rgba(94,219,94,0.12)';
-  const tbr=pct<40?'rgba(255,112,112,0.3)':pct<75?'rgba(245,166,35,0.3)':'rgba(94,219,94,0.3)';
-  const tglow=pct<40?'rgba(255,112,112,0.08)':pct<75?'rgba(245,166,35,0.08)':'rgba(94,219,94,0.08)';
+  const tc=scoreCol(pct);
+  const tb=scoreColAlpha(pct,.12);
+  const tbr=scoreColAlpha(pct,.32);
+  const tglow=scoreColAlpha(pct,.08);
   const base=window.location.href.substring(0,window.location.href.lastIndexOf('/')+1);
   const catData=CATS.map((cat,i)=>{
     const p=Math.round(scores[i]/cat.max*100);
     const ti=p<40?0:p<75?1:2;
     const tl=p<40?'Not Ready':p<75?'Emerging Readiness':'Operating at Scale';
-    const col=p<40?'#ff7070':p<75?'#f5a623':'#5edb5e';
-    const cbg=p<40?'rgba(255,112,112,0.06)':p<75?'rgba(245,166,35,0.06)':'rgba(94,219,94,0.06)';
+    const col=scoreCol(p);
+    const cbg=scoreColAlpha(p,.06);
     return {name:cat.name,pct:p,tierLabel:tl,col,cbg,desc:CAT_DESC[ids[i]][ti]};
   });
   let li=0,lp=101;
   CATS.forEach((c,i)=>{const p=Math.round(scores[i]/c.max*100);if(p<lp){lp=p;li=i;}});
   const gid=ids[li],g=GAP[gid];
-  const gc=lp<40?'#ff7070':lp<75?'#f5a623':'#5edb5e';
-  const gbg=lp<40?'rgba(255,112,112,0.1)':lp<75?'rgba(245,166,35,0.1)':'rgba(94,219,94,0.1)';
-  const gbr=lp<40?'rgba(255,112,112,0.25)':lp<75?'rgba(245,166,35,0.25)':'rgba(94,219,94,0.25)';
+  const gc=scoreCol(lp);
+  const gbg=scoreColAlpha(lp,.1);
+  const gbr=scoreColAlpha(lp,.28);
   const nextSteps=[
     [{n:'01',t:'Map Your Deployment Context',d:'Define where and how an AI character would operate. Without this foundation, every other readiness decision lacks direction.'},
      {n:'02',t:'Assign Clear Ownership',d:'Identify and formally appoint a named individual with authority and accountability for the AI character initiative.'},
@@ -1539,6 +1540,16 @@ html,body{background:#0a0a0a;color:#fff;font-family:-apple-system,BlinkMacSystem
 
 </body></html>`;}
 
+
+function scoreCol(p){
+  // Smooth gradient: red(0%) → amber(50%) → green(100%)
+  if(p<=50){const t=p/50;return`rgb(${Math.round(255+(245-255)*t)},${Math.round(70+(166-70)*t)},${Math.round(70+(35-70)*t)})`;}
+  const t=(p-50)/50;return`rgb(${Math.round(245+(94-245)*t)},${Math.round(166+(219-166)*t)},${Math.round(35+(94-35)*t)})`;
+}
+function scoreColAlpha(p,a){
+  if(p<=50){const t=p/50;return`rgba(${Math.round(255+(245-255)*t)},${Math.round(70+(166-70)*t)},${Math.round(70+(35-70)*t)},${a})`;}
+  const t=(p-50)/50;return`rgba(${Math.round(245+(94-245)*t)},${Math.round(166+(219-166)*t)},${Math.round(35+(94-35)*t)},${a})`;
+}
 
 function animNum(el,from,to,dur,suf=''){
   const s=performance.now();
