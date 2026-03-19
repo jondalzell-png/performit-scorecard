@@ -1205,10 +1205,17 @@ function showResults(name='',email=''){
   document.getElementById('resH').textContent=displayName ? displayName+', '+tier.h.charAt(0).toLowerCase()+tier.h.slice(1) : tier.h;
   document.getElementById('resSum').textContent=tier.s;
   document.getElementById('resBul').innerHTML=tier.b.map(b=>`<li>${b}</li>`).join('');
+  const gaugeCol=pct<40?'#ff7070':pct<75?'#f5a623':'#5edb5e';
+  const gaugeShadow=pct<40?'rgba(255,112,112,.6)':pct<75?'rgba(245,166,35,.6)':'rgba(94,219,94,.6)';
+  const gaugeFillEl=document.getElementById('gaugeFill');
+  const gaugeNumEl=document.getElementById('gaugeNum');
+  gaugeFillEl.setAttribute('stroke',gaugeCol);
+  gaugeFillEl.style.filter=`drop-shadow(0 0 12px ${gaugeShadow})`;
+  gaugeNumEl.setAttribute('fill',gaugeCol);
   setTimeout(()=>{
     const arc=472,filled=arc*pct/100;
-    document.getElementById('gaugeFill').setAttribute('stroke-dasharray',`${filled} ${arc-filled}`);
-    animNum(document.getElementById('gaugeNum'),0,pct,1500,'%');
+    gaugeFillEl.setAttribute('stroke-dasharray',`${filled} ${arc-filled}`);
+    animNum(gaugeNumEl,0,pct,1500,'%');
   },200);
 
   // Category cards
