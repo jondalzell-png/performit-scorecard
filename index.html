@@ -3691,6 +3691,29 @@ ${govPages}
       function u(now){const t=Math.min((now-s)/dur,1),e=t<.5?2*t*t:-1+(4-2*t)*t;el.textContent=Math.round(from+(to-from)*e)+suf;if(t<1)requestAnimationFrame(u);}
       requestAnimationFrame(u);
     }
+
+    // ── AUTO-RENDER FROM URL PARAMS ──
+    (function(){
+      const params=new URLSearchParams(window.location.search);
+      const encoded=params.get('r');
+      if(!encoded) return;
+      try{
+        const data=JSON.parse(atob(encoded));
+        leadName=data.n||'';
+        leadEmail=data.e||'';
+        leadIndustry=data.i||'';
+        leadRole=data.ro||'';
+        scores=[
+          Math.round(data.s[0]/100*CATS[0].max),
+          Math.round(data.s[1]/100*CATS[1].max),
+          Math.round(data.s[2]/100*CATS[2].max),
+          Math.round(data.s[3]/100*CATS[3].max)
+        ];
+        document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
+        document.body.classList.add('quiz-mode');
+        showResults(leadName,leadEmail);
+      }catch(err){console.warn('Invalid report link:',err);}
+    })();
   </script>
 
 </body>
