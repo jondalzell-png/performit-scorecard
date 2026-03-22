@@ -2541,7 +2541,7 @@
                 <li>Build the confidence to deploy responsibly — and be seen doing it</li>
               </ul>
               <div class="cta-btns">
-                <a href="mailto:jon.dalzell@performitlive.com?subject=AI Readiness Scorecard — Let%27s Talk" class="btn-cta-primary">Book a Strategy Call</a>
+                <a href="https://links.performitlive.com/widget/booking/7yI8QxA6rWZxjB6bxbS8" target="_blank" class="btn-cta-primary">Book a Strategy Call</a>
 
               </div>
               <p class="cta-microcopy" style="color:#fff;margin-top:24px">No commitment required · 30-minute call</p>
@@ -2854,8 +2854,43 @@
         },delays[i]);
       });
       setTimeout(()=>{
+        submitToCertaintyEngine(leadName,leadEmail);
         showResults(leadName,leadEmail);
       },3400);
+    }
+
+    function submitToCertaintyEngine(fullName,email){
+      const parts=fullName.trim().split(/\s+/);
+      const firstName=parts[0]||'';
+      const lastName=parts.slice(1).join(' ')||'';
+      const total=scores.reduce((a,b)=>a+b,0);
+      const pct=Math.min(100,Math.round(total/2000*100));
+      const tier=TIERS.find(t=>pct>=t.min&&pct<=t.max)||TIERS[0];
+      const catPcts=CATS.map((cat,i)=>Math.min(100,Math.round(scores[i]/cat.max*100)));
+
+      const reportData=btoa(JSON.stringify({
+        n:fullName, e:email, i:leadIndustry, ro:leadRole, s:catPcts
+      }));
+      const reportUrl=window.location.origin+window.location.pathname+'?r='+reportData;
+
+      fetch('https://services.leadconnectorhq.com/hooks/g1m8j2MpXVdfvFK2gJWj/webhook-trigger/788dda06-0d21-4a7e-811c-76d4f1915be3',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({
+          firstName,
+          lastName,
+          email,
+          industry:leadIndustry,
+          role:leadRole,
+          overallScore:String(pct),
+          tier:tier.label,
+          deploymentClarityScore:String(catPcts[0]),
+          expectationsBehaviourScore:String(catPcts[1]),
+          ownershipAccountabilityScore:String(catPcts[2]),
+          responseOversightScore:String(catPcts[3]),
+          reportUrl
+        })
+      }).catch(function(err){console.warn('Scorecard submit failed:',err);});
     }
 
     function showResults(name='',email=''){

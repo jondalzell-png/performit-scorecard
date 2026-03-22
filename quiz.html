@@ -21,13 +21,13 @@ body{
 }
 body.results-active{overflow:auto;height:auto}
 :root{
-  --orange:#f5a623;
-  --orange-dark:#d4891a;
+  --orange:#ff9b00;
+  --orange-dark:#d98300;
   --bg:#0a0a0a;
   --surface:#131313;
   --surface2:#1a1a1a;
   --border:rgba(255,255,255,0.08);
-  --border-orange:rgba(245,166,35,0.25);
+  --border-orange:rgba(255,155,0,0.25);
   --muted:rgba(255,255,255,0.55);
   --muted2:rgba(255,255,255,0.35);
 }
@@ -116,7 +116,7 @@ body.results-active{overflow:auto;height:auto}
   border-radius:3px;
   transition:width .5s cubic-bezier(.4,0,.2,1);
   width:0%;
-  box-shadow:0 0 8px rgba(245,166,35,.4);
+  box-shadow:0 0 8px rgba(255,155,0,.4);
 }
 
 /* ─── SECTIONS ─── */
@@ -143,8 +143,8 @@ body.results-active{overflow:auto;height:auto}
 }
 .qual-eyebrow{
   display:inline-block;
-  background:rgba(245,166,35,.1);
-  border:1px solid rgba(245,166,35,.25);
+  background:rgba(255,155,0,.1);
+  border:1px solid rgba(255,155,0,.25);
   color:var(--orange);
   font-size:13px;
   font-weight:700;
@@ -199,7 +199,7 @@ body.results-active{overflow:auto;height:auto}
   transition:border-color .2s;
 }
 .qual-select:focus{outline:none;border-color:var(--orange)}
-.qual-select.error{border-color:rgba(245,166,35,.8);box-shadow:0 0 0 3px rgba(245,166,35,.15)}
+.qual-select.error{border-color:rgba(255,155,0,.8);box-shadow:0 0 0 3px rgba(255,155,0,.15)}
 .qual-select option{background:#1a1a1a;color:#fff}
 .field-error{
   display:none;
@@ -207,8 +207,8 @@ body.results-active{overflow:auto;height:auto}
   gap:8px;
   margin-top:10px;
   padding:12px 16px;
-  background:rgba(245,166,35,.08);
-  border:1px solid rgba(245,166,35,.25);
+  background:rgba(255,155,0,.08);
+  border:1px solid rgba(255,155,0,.25);
   border-radius:8px;
   font-size:14px;
   font-weight:600;
@@ -232,7 +232,7 @@ body.results-active{overflow:auto;height:auto}
   letter-spacing:.01em;
   margin-top:8px;
 }
-.btn-begin:hover{background:#ffb733;transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,166,35,.3)}
+.btn-begin:hover{background:#ffb733;transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,155,0,.3)}
 
 /* ─── LEAD CAPTURE ─── */
 .lead-outer{
@@ -252,8 +252,8 @@ body.results-active{overflow:auto;height:auto}
   display:inline-flex;
   align-items:center;
   gap:8px;
-  background:rgba(245,166,35,.1);
-  border:1px solid rgba(245,166,35,.25);
+  background:rgba(255,155,0,.1);
+  border:1px solid rgba(255,155,0,.25);
   color:var(--orange);
   font-size:13px;
   font-weight:700;
@@ -296,7 +296,7 @@ body.results-active{overflow:auto;height:auto}
 }
 .lead-input::placeholder{color:rgba(255,255,255,.3)}
 .lead-input:focus{border-color:var(--orange)}
-.lead-input.error{border-color:rgba(245,166,35,.8);box-shadow:0 0 0 3px rgba(245,166,35,.15)}
+.lead-input.error{border-color:rgba(255,155,0,.8);box-shadow:0 0 0 3px rgba(255,155,0,.15)}
 .lead-privacy{
   font-size:13px;
   color:rgba(255,255,255,.35);
@@ -322,7 +322,7 @@ body.results-active{overflow:auto;height:auto}
   top:50%;left:50%;
   transform:translate(-50%,-50%);
   width:700px;height:500px;
-  background:radial-gradient(ellipse at center,rgba(245,166,35,.04) 0%,transparent 70%);
+  background:radial-gradient(ellipse at center,rgba(255,155,0,.04) 0%,transparent 70%);
   pointer-events:none;
   z-index:0;
 }
@@ -355,7 +355,7 @@ body.results-active{overflow:auto;height:auto}
   gap:16px;
   background:#1c1c1c;
   border:1px solid rgba(255,255,255,.07);
-  border-left:3px solid rgba(245,166,35,.5);
+  border-left:3px solid rgba(255,155,0,.5);
   border-radius:12px;
   padding:16px 22px;
   text-align:left;
@@ -374,23 +374,23 @@ body.results-active{overflow:auto;height:auto}
   border-color:rgba(255,255,255,.12);
   border-left-color:var(--orange);
   border-left-width:3px;
-  background:rgba(245,166,35,.05);
+  background:rgba(255,155,0,.05);
   color:#fff;
   box-shadow:0 4px 20px rgba(0,0,0,.3);
 }
 .a-btn.selected{
-  border-color:rgba(245,166,35,.3);
+  border-color:rgba(255,155,0,.3);
   border-left-color:var(--orange);
   border-left-width:3px;
-  background:rgba(245,166,35,.08);
+  background:rgba(255,155,0,.08);
   color:#fff;
-  box-shadow:0 4px 24px rgba(245,166,35,.12);
+  box-shadow:0 4px 24px rgba(255,155,0,.12);
 }
 .a-btn.selected .a-letter{
   background:var(--orange);
   color:#000;
   border-color:var(--orange);
-  box-shadow:0 0 12px rgba(245,166,35,.4);
+  box-shadow:0 0 12px rgba(255,155,0,.4);
 }
 .a-letter{
   width:38px;
@@ -408,8 +408,8 @@ body.results-active{overflow:auto;height:auto}
   letter-spacing:0;
 }
 .a-btn:hover .a-letter{
-  background:rgba(245,166,35,.15);
-  border-color:rgba(245,166,35,.4);
+  background:rgba(255,155,0,.15);
+  border-color:rgba(255,155,0,.4);
   color:var(--orange);
 }
 .a-text{flex:1}
@@ -432,7 +432,7 @@ body.results-active{overflow:auto;height:auto}
   top:-60px;left:50%;
   transform:translateX(-50%);
   width:900px;height:600px;
-  background:radial-gradient(ellipse at 50% 30%,var(--hero-glow,rgba(245,166,35,.1)) 0%,transparent 60%);
+  background:radial-gradient(ellipse at 50% 30%,var(--hero-glow,rgba(255,155,0,.1)) 0%,transparent 60%);
   pointer-events:none;
 }
 .score-hero::after{
@@ -440,7 +440,7 @@ body.results-active{overflow:auto;height:auto}
   position:absolute;
   bottom:0;left:0;right:0;
   height:1px;
-  background:linear-gradient(90deg,transparent,rgba(245,166,35,.2) 30%,rgba(245,166,35,.2) 70%,transparent);
+  background:linear-gradient(90deg,transparent,rgba(255,155,0,.2) 30%,rgba(255,155,0,.2) 70%,transparent);
 }
 .score-tier-badge{
   display:inline-block;
@@ -453,13 +453,13 @@ body.results-active{overflow:auto;height:auto}
   margin-bottom:40px;
 }
 .t-nr{background:rgba(220,50,50,.15);color:#ff7070;border:1px solid rgba(220,50,50,.4)}
-.t-em{background:rgba(245,166,35,.15);color:var(--orange);border:1px solid rgba(245,166,35,.4)}
+.t-em{background:rgba(255,155,0,.15);color:var(--orange);border:1px solid rgba(255,155,0,.4)}
 .t-op{background:rgba(80,200,80,.15);color:#5edb5e;border:1px solid rgba(80,200,80,.4)}
 .gauge-wrap{
   width:360px;
   margin:0 auto 32px;
   position:relative;
-  filter:drop-shadow(0 0 40px rgba(245,166,35,.15));
+  filter:drop-shadow(0 0 40px rgba(255,155,0,.15));
 }
 .score-hero h1{
   font-size:clamp(28px,4vw,48px);
@@ -493,8 +493,8 @@ body.results-active{overflow:auto;height:auto}
   width:16px;height:16px;
   border-radius:50%;
   border:1.5px solid var(--orange);
-  background:rgba(245,166,35,.12);
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 5l2.5 2.5L8 3' stroke='%23f5a623' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background:rgba(255,155,0,.12);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 5l2.5 2.5L8 3' stroke='%23ff9b00' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat:no-repeat;
   background-position:center;
   background-size:10px;
@@ -580,7 +580,7 @@ body.results-active{overflow:auto;height:auto}
 .gap-section{margin-bottom:72px}
 .gap-card{
   background:linear-gradient(135deg,#1f1800,#1a1500,#141200);
-  border:1px solid rgba(245,166,35,.35);
+  border:1px solid rgba(255,155,0,.35);
   border-radius:20px;
   padding:44px;
   position:relative;
@@ -592,7 +592,7 @@ body.results-active{overflow:auto;height:auto}
   top:-80px;right:-80px;
   width:280px;height:280px;
   border-radius:50%;
-  background:radial-gradient(circle,rgba(245,166,35,.1),transparent 70%);
+  background:radial-gradient(circle,rgba(255,155,0,.1),transparent 70%);
   pointer-events:none;
 }
 .gap-score-badge{
@@ -709,8 +709,8 @@ body.results-active{overflow:auto;height:auto}
   width:18px;height:18px;
   border-radius:50%;
   border:1.5px solid var(--orange);
-  background:rgba(245,166,35,.12);
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 5l2.5 2.5L8 3' stroke='%23f5a623' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background:rgba(255,155,0,.12);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3Cpath d='M2 5l2.5 2.5L8 3' stroke='%23ff9b00' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat:no-repeat;
   background-position:center;
   background-size:10px;
@@ -732,7 +732,7 @@ body.results-active{overflow:auto;height:auto}
   text-decoration:none;
   display:inline-block;
 }
-.btn-cta-primary:hover{background:#ffb733;transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,166,35,.3)}
+.btn-cta-primary:hover{background:#ffb733;transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,155,0,.3)}
 .btn-cta-outline{
   padding:16px 32px;
   border:1px solid rgba(255,255,255,.2);
@@ -778,7 +778,7 @@ body.results-active{overflow:auto;height:auto}
   text-decoration:none;
   margin-top:32px;
 }
-.btn-download:hover{background:#ffb733;transform:translateY(-2px);box-shadow:0 8px 24px rgba(245,166,35,.35)}
+.btn-download:hover{background:#ffb733;transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,155,0,.35)}
 .btn-download svg{flex-shrink:0;color:#000}
 
 /* Entrance animations */
@@ -904,18 +904,14 @@ footer p{font-size:12px;color:rgba(0,0,0,.55);font-weight:500}
         <span class="qual-question-label">What industry are you in?</span>
         <select class="qual-select" id="industry" onchange="clearError('industry','errIndustry')">
           <option value="" disabled selected>Select your industry</option>
-          <option>Retail &amp; Consumer</option>
-          <option>Hospitality, Events &amp; Tourism</option>
-          <option>Financial Services</option>
-          <option>Healthcare &amp; Life Sciences</option>
-          <option>Technology</option>
-          <option>Media &amp; Entertainment</option>
-          <option>Transport &amp; Infrastructure</option>
-          <option>Public Sector</option>
+          <option>Retail</option>
+          <option>Advertising</option>
+          <option>Fixed Based Entertainment</option>
+          <option>Museum &amp; Heritage</option>
           <option>Other</option>
         </select>
         <div class="field-error" id="errIndustry">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#f5a623" stroke-width="1.5"/><path d="M8 5v4M8 11v.5" stroke="#f5a623" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#ff9b00" stroke-width="1.5"/><path d="M8 5v4M8 11v.5" stroke="#ff9b00" stroke-width="1.5" stroke-linecap="round"/></svg>
           Please select your industry to continue
         </div>
       </div>
@@ -925,16 +921,16 @@ footer p{font-size:12px;color:rgba(0,0,0,.55);font-weight:500}
         <select class="qual-select" id="role" onchange="clearError('role','errRole')">
           <option value="" disabled selected>Select your role</option>
           <option>C-Suite / Executive</option>
+          <option>Chief Experience Officer</option>
+          <option>Chief Marketing Officer</option>
           <option>Director / Vice President</option>
           <option>Marketing / Communications Lead</option>
-          <option>Operations Lead</option>
-          <option>Product / Technology Lead</option>
-          <option>Manager</option>
+
           <option>Consultant / Agency</option>
           <option>Other</option>
         </select>
         <div class="field-error" id="errRole">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#f5a623" stroke-width="1.5"/><path d="M8 5v4M8 11v.5" stroke="#f5a623" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#ff9b00" stroke-width="1.5"/><path d="M8 5v4M8 11v.5" stroke="#ff9b00" stroke-width="1.5" stroke-linecap="round"/></svg>
           Please select your role to continue
         </div>
       </div>
@@ -964,7 +960,7 @@ footer p{font-size:12px;color:rgba(0,0,0,.55);font-weight:500}
   <div class="lead-outer">
     <div class="lead-inner">
       <span class="lead-eyebrow">
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5L7 1z" fill="#f5a623"/></svg>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1l1.5 3.5L12 5l-2.5 2.5.6 3.5L7 9.5 3.9 11l.6-3.5L2 5l3.5-.5L7 1z" fill="#ff9b00"/></svg>
         Your results are ready
       </span>
       <h1 class="lead-h">Where should we<br>send your <span>report?</span></h1>
@@ -972,12 +968,12 @@ footer p{font-size:12px;color:rgba(0,0,0,.55);font-weight:500}
       <div class="lead-fields">
         <input class="lead-input" id="leadName" type="text" placeholder="Your full name" autocomplete="name" oninput="clearLeadError('leadName','errLeadName')">
         <div class="field-error" id="errLeadName">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#f5a623" stroke-width="1.5"/><path d="M8 5v4M8 11v.5" stroke="#f5a623" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#ff9b00" stroke-width="1.5"/><path d="M8 5v4M8 11v.5" stroke="#ff9b00" stroke-width="1.5" stroke-linecap="round"/></svg>
           Please enter your name to continue
         </div>
         <input class="lead-input" id="leadEmail" type="email" placeholder="Your work email" autocomplete="email" oninput="clearLeadError('leadEmail','errLeadEmail')">
         <div class="field-error" id="errLeadEmail">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#f5a623" stroke-width="1.5"/><path d="M8 5v4M8 11v.5" stroke="#f5a623" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#ff9b00" stroke-width="1.5"/><path d="M8 5v4M8 11v.5" stroke="#ff9b00" stroke-width="1.5" stroke-linecap="round"/></svg>
           Please enter a valid email address
         </div>
       </div>
@@ -999,8 +995,8 @@ footer p{font-size:12px;color:rgba(0,0,0,.55);font-weight:500}
         <div class="gauge-wrap">
           <svg viewBox="0 0 360 210" width="360" style="display:block;margin:0 auto">
             <path d="M 30 180 A 150 150 0 0 1 330 180" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="22" stroke-linecap="round"/>
-            <path id="gaugeFill" d="M 30 180 A 150 150 0 0 1 330 180" fill="none" stroke="#f5a623" stroke-width="22" stroke-linecap="round" stroke-dasharray="0 472" style="transition:stroke-dasharray 1.8s cubic-bezier(.4,0,.2,1);filter:drop-shadow(0 0 12px rgba(245,166,35,.6))"/>
-            <text id="gaugeNum" x="180" y="162" text-anchor="middle" font-size="72" font-weight="900" fill="#f5a623" font-family="Inter,sans-serif" letter-spacing="-3">0%</text>
+            <path id="gaugeFill" d="M 30 180 A 150 150 0 0 1 330 180" fill="none" stroke="#ff9b00" stroke-width="22" stroke-linecap="round" stroke-dasharray="0 472" style="transition:stroke-dasharray 1.8s cubic-bezier(.4,0,.2,1);filter:drop-shadow(0 0 12px rgba(255,155,0,.6))"/>
+            <text id="gaugeNum" x="180" y="162" text-anchor="middle" font-size="72" font-weight="900" fill="#ff9b00" font-family="Inter,sans-serif" letter-spacing="-3">0%</text>
             <text x="180" y="192" text-anchor="middle" font-size="13" fill="rgba(255,255,255,0.3)" font-family="Inter,sans-serif" font-weight="700" letter-spacing="3">OVERALL SCORE</text>
           </svg>
         </div>
@@ -1037,7 +1033,7 @@ footer p{font-size:12px;color:rgba(0,0,0,.55);font-weight:500}
             <li>Build the confidence to deploy responsibly — and be seen doing it</li>
           </ul>
           <div class="cta-btns">
-            <a href="mailto:jon.dalzell@performitlive.com?subject=AI Readiness Scorecard — Let%27s Talk" class="btn-cta-primary">Book a Strategy Call</a>
+            <a href="https://links.performitlive.com/widget/booking/7yI8QxA6rWZxjB6bxbS8" target="_blank" class="btn-cta-primary">Book a Strategy Call</a>
             <a href="index.html" class="btn-cta-outline">Return to Home</a>
           </div>
           <p class="cta-microcopy">No commitment required · 30-minute call</p>
@@ -1052,7 +1048,7 @@ footer p{font-size:12px;color:rgba(0,0,0,.55);font-weight:500}
 </div>
 
 <footer>
-  <img src="performit-logo.png" alt="Performit Live">
+  <img src="performit-logo-black.png" alt="Performit Live">
   <p>© 2025 Performit Live. All rights reserved.</p>
 </footer>
 
@@ -1172,6 +1168,42 @@ function submitLead(){
   if(!valid){document.getElementById('leadName').scrollIntoView({behavior:'smooth',block:'center'});return;}
   leadName=name; leadEmail=email;
   showResults(name,email);
+  submitToCertaintyEngine(name,email);
+}
+
+function submitToCertaintyEngine(fullName,email){
+  const parts=fullName.trim().split(/\s+/);
+  const firstName=parts[0]||'';
+  const lastName=parts.slice(1).join(' ')||'';
+  const total=scores.reduce((a,b)=>a+b,0);
+  const pct=Math.min(100,Math.round(total/2000*100));
+  const tier=TIERS.find(t=>pct>=t.min&&pct<=t.max)||TIERS[0];
+  const catPcts=CATS.map((cat,i)=>Math.min(100,Math.round(scores[i]/cat.max*100)));
+
+  // Build report link with encoded data
+  const reportData=btoa(JSON.stringify({
+    n:fullName, e:email, i:leadIndustry, ro:leadRole, s:catPcts
+  }));
+  const reportUrl=window.location.origin+window.location.pathname+'?r='+reportData;
+
+  fetch('https://services.leadconnectorhq.com/hooks/g1m8j2MpXVdfvFK2gJWj/webhook-trigger/788dda06-0d21-4a7e-811c-76d4f1915be3',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      firstName,
+      lastName,
+      email,
+      industry:leadIndustry,
+      role:leadRole,
+      overallScore:String(pct),
+      tier:tier.label,
+      deploymentClarityScore:String(catPcts[0]),
+      expectationsBehaviourScore:String(catPcts[1]),
+      ownershipAccountabilityScore:String(catPcts[2]),
+      responseOversightScore:String(catPcts[3]),
+      reportUrl
+    })
+  }).catch(function(err){console.warn('Scorecard submit failed:',err);});
 }
 
 function startQuiz(){
@@ -1606,12 +1638,12 @@ html,body{background:#0a0a0a;color:#fff;font-family:-apple-system,BlinkMacSystem
 
 function scoreCol(p){
   // Smooth gradient: red(0%) → amber(50%) → green(100%)
-  if(p<=50){const t=p/50;return`rgb(${Math.round(255+(245-255)*t)},${Math.round(70+(166-70)*t)},${Math.round(70+(35-70)*t)})`;}
-  const t=(p-50)/50;return`rgb(${Math.round(245+(94-245)*t)},${Math.round(166+(219-166)*t)},${Math.round(35+(94-35)*t)})`;
+  if(p<=50){const t=p/50;return`rgb(${Math.round(255+(255-255)*t)},${Math.round(70+(155-70)*t)},${Math.round(70+(0-70)*t)})`;}
+  const t=(p-50)/50;return`rgb(${Math.round(255+(94-255)*t)},${Math.round(155+(219-155)*t)},${Math.round(0+(94-0)*t)})`;
 }
 function scoreColAlpha(p,a){
-  if(p<=50){const t=p/50;return`rgba(${Math.round(255+(245-255)*t)},${Math.round(70+(166-70)*t)},${Math.round(70+(35-70)*t)},${a})`;}
-  const t=(p-50)/50;return`rgba(${Math.round(245+(94-245)*t)},${Math.round(166+(219-166)*t)},${Math.round(35+(94-35)*t)},${a})`;
+  if(p<=50){const t=p/50;return`rgba(${Math.round(255+(255-255)*t)},${Math.round(70+(155-70)*t)},${Math.round(70+(0-70)*t)},${a})`;}
+  const t=(p-50)/50;return`rgba(${Math.round(255+(94-255)*t)},${Math.round(155+(219-155)*t)},${Math.round(0+(94-0)*t)},${a})`;
 }
 
 function animNum(el,from,to,dur,suf=''){
@@ -1619,6 +1651,31 @@ function animNum(el,from,to,dur,suf=''){
   function u(now){const t=Math.min((now-s)/dur,1),e=t<.5?2*t*t:-1+(4-2*t)*t;el.textContent=Math.round(from+(to-from)*e)+suf;if(t<1)requestAnimationFrame(u);}
   requestAnimationFrame(u);
 }
+
+// ── AUTO-RENDER FROM URL PARAMS ──
+(function(){
+  const params=new URLSearchParams(window.location.search);
+  const encoded=params.get('r');
+  if(!encoded) return;
+  try{
+    const data=JSON.parse(atob(encoded));
+    // Restore state from encoded data
+    leadName=data.n||'';
+    leadEmail=data.e||'';
+    leadIndustry=data.i||'';
+    leadRole=data.ro||'';
+    // Restore category scores from percentages back to raw scores
+    scores=[
+      Math.round(data.s[0]/100*CATS[0].max),
+      Math.round(data.s[1]/100*CATS[1].max),
+      Math.round(data.s[2]/100*CATS[2].max),
+      Math.round(data.s[3]/100*CATS[3].max)
+    ];
+    // Hide intro sections and render results
+    document.querySelectorAll('.sec').forEach(s=>s.classList.remove('active'));
+    showResults(leadName,leadEmail);
+  }catch(err){console.warn('Invalid report link:',err);}
+})();
 </script>
 </body>
 </html>
